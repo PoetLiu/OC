@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		063AD3B21C7C941400F4504C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A82CF51C7C5DEF00E9A52F /* main.m */; };
+		063AD3C01C7C982A00F4504C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 063AD3BF1C7C982A00F4504C /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		06A82CF01C7C5DEF00E9A52F /* CopyFiles */ = {
+		063AD3BA1C7C982A00F4504C /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -23,12 +23,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		06A82CF21C7C5DEF00E9A52F /* Hello Objective-C */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Hello Objective-C"; sourceTree = BUILT_PRODUCTS_DIR; };
-		06A82CF51C7C5DEF00E9A52F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; usesTabs = 1; };
+		063AD3BC1C7C982A00F4504C /* 02.02-BOOL Party */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "02.02-BOOL Party"; sourceTree = BUILT_PRODUCTS_DIR; };
+		063AD3BF1C7C982A00F4504C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		06A82CEF1C7C5DEF00E9A52F /* Frameworks */ = {
+		063AD3B91C7C982A00F4504C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -38,94 +38,94 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		06A82CE91C7C5DEF00E9A52F = {
+		063AD3B31C7C982A00F4504C = {
 			isa = PBXGroup;
 			children = (
-				06A82CF41C7C5DEF00E9A52F /* Hello Objective-C */,
-				06A82CF31C7C5DEF00E9A52F /* Products */,
+				063AD3BE1C7C982A00F4504C /* 02.02-BOOL Party */,
+				063AD3BD1C7C982A00F4504C /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		06A82CF31C7C5DEF00E9A52F /* Products */ = {
+		063AD3BD1C7C982A00F4504C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				06A82CF21C7C5DEF00E9A52F /* Hello Objective-C */,
+				063AD3BC1C7C982A00F4504C /* 02.02-BOOL Party */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		06A82CF41C7C5DEF00E9A52F /* Hello Objective-C */ = {
+		063AD3BE1C7C982A00F4504C /* 02.02-BOOL Party */ = {
 			isa = PBXGroup;
 			children = (
-				06A82CF51C7C5DEF00E9A52F /* main.m */,
+				063AD3BF1C7C982A00F4504C /* main.m */,
 			);
-			path = "Hello Objective-C";
+			path = "02.02-BOOL Party";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		06A82CF11C7C5DEF00E9A52F /* Hello Objective-C */ = {
+		063AD3BB1C7C982A00F4504C /* 02.02-BOOL Party */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 06A82CF91C7C5DEF00E9A52F /* Build configuration list for PBXNativeTarget "Hello Objective-C" */;
+			buildConfigurationList = 063AD3C31C7C982A00F4504C /* Build configuration list for PBXNativeTarget "02.02-BOOL Party" */;
 			buildPhases = (
-				06A82CEE1C7C5DEF00E9A52F /* Sources */,
-				06A82CEF1C7C5DEF00E9A52F /* Frameworks */,
-				06A82CF01C7C5DEF00E9A52F /* CopyFiles */,
+				063AD3B81C7C982A00F4504C /* Sources */,
+				063AD3B91C7C982A00F4504C /* Frameworks */,
+				063AD3BA1C7C982A00F4504C /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Hello Objective-C";
-			productName = "Hello Objective-C";
-			productReference = 06A82CF21C7C5DEF00E9A52F /* Hello Objective-C */;
+			name = "02.02-BOOL Party";
+			productName = "02.02-BOOL Party";
+			productReference = 063AD3BC1C7C982A00F4504C /* 02.02-BOOL Party */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		06A82CEA1C7C5DEF00E9A52F /* Project object */ = {
+		063AD3B41C7C982A00F4504C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0710;
-				ORGANIZATIONNAME = liupeng;
+				ORGANIZATIONNAME = liuPeng;
 				TargetAttributes = {
-					06A82CF11C7C5DEF00E9A52F = {
+					063AD3BB1C7C982A00F4504C = {
 						CreatedOnToolsVersion = 7.1;
 					};
 				};
 			};
-			buildConfigurationList = 06A82CED1C7C5DEF00E9A52F /* Build configuration list for PBXProject "Hello Objective-C" */;
+			buildConfigurationList = 063AD3B71C7C982A00F4504C /* Build configuration list for PBXProject "02.02-BOOL Party" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 06A82CE91C7C5DEF00E9A52F;
-			productRefGroup = 06A82CF31C7C5DEF00E9A52F /* Products */;
+			mainGroup = 063AD3B31C7C982A00F4504C;
+			productRefGroup = 063AD3BD1C7C982A00F4504C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				06A82CF11C7C5DEF00E9A52F /* Hello Objective-C */,
+				063AD3BB1C7C982A00F4504C /* 02.02-BOOL Party */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		06A82CEE1C7C5DEF00E9A52F /* Sources */ = {
+		063AD3B81C7C982A00F4504C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				063AD3B21C7C941400F4504C /* main.m in Sources */,
+				063AD3C01C7C982A00F4504C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		06A82CF71C7C5DEF00E9A52F /* Debug */ = {
+		063AD3C11C7C982A00F4504C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -161,14 +161,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
-		06A82CF81C7C5DEF00E9A52F /* Release */ = {
+		063AD3C21C7C982A00F4504C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -198,24 +198,22 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
 			name = Release;
 		};
-		06A82CFA1C7C5DEF00E9A52F /* Debug */ = {
+		063AD3C41C7C982A00F4504C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		06A82CFB1C7C5DEF00E9A52F /* Release */ = {
+		063AD3C51C7C982A00F4504C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -223,25 +221,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		06A82CED1C7C5DEF00E9A52F /* Build configuration list for PBXProject "Hello Objective-C" */ = {
+		063AD3B71C7C982A00F4504C /* Build configuration list for PBXProject "02.02-BOOL Party" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				06A82CF71C7C5DEF00E9A52F /* Debug */,
-				06A82CF81C7C5DEF00E9A52F /* Release */,
+				063AD3C11C7C982A00F4504C /* Debug */,
+				063AD3C21C7C982A00F4504C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		06A82CF91C7C5DEF00E9A52F /* Build configuration list for PBXNativeTarget "Hello Objective-C" */ = {
+		063AD3C31C7C982A00F4504C /* Build configuration list for PBXNativeTarget "02.02-BOOL Party" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				06A82CFA1C7C5DEF00E9A52F /* Debug */,
-				06A82CFB1C7C5DEF00E9A52F /* Release */,
+				063AD3C41C7C982A00F4504C /* Debug */,
+				063AD3C51C7C982A00F4504C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 06A82CEA1C7C5DEF00E9A52F /* Project object */;
+	rootObject = 063AD3B41C7C982A00F4504C /* Project object */;
 }
