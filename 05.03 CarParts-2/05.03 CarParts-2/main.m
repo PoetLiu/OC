@@ -1,6 +1,6 @@
 //
 //  main.m
-//  05.02 CarParts-Accessors
+//  05.03 CarParts-2
 //
 //  Created by liupeng on 16/2/26.
 //  Copyright © 2016年 liupeng. All rights reserved.
@@ -15,7 +15,7 @@
 {
 	return (@"I am a tire. I last a while.");
 }
-@end
+@end // Tire
 
 @interface Engine : NSObject
 @end
@@ -24,7 +24,7 @@
 {
 	return (@"I am an engine. Vrooom!");
 }
-@end
+@end // Engine
 
 @interface Car : NSObject
 {
@@ -81,18 +81,35 @@
 	NSLog(@"%@", tires[2]);
 	NSLog(@"%@", tires[3]);
 }
+@end // Car
+
+@interface Slant6 : Engine
+@end
+@implementation Slant6
+- (NSString *)description
+{
+	return (@"I am a slant-6. VROO0M!");
+} // description
+@end // Slant6
+
+@interface AllWeatherRadial : Tire
+@end // AllWeatherRadial
+@implementation AllWeatherRadial
+- (NSString *) description
+{
+	return (@"I am a tire for rain or shine.");
+} // description
 @end
 
 int main(int argc, const char * argv[]) {
 	@autoreleasepool {
 		Car *car = [Car new];
-		Engine *engine	= [Engine new];
-		[car setEngine: engine];
-		
 		for (int i = 0; i < 4; i++) {
-			Tire *tire	= [Tire new];
+			Tire *tire	= [AllWeatherRadial new];
 			[car setTire:tire atIndex:i];
 		}
+		Engine *engine	= [Slant6 new];
+		[car setEngine: engine];
 		[car print];
 	}
 	return 0;
