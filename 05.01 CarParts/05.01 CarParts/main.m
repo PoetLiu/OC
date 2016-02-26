@@ -45,12 +45,21 @@
 	}
 	return (self);
 }
+- (void) print
+{
+	NSLog(@"%@", engine);
+	NSLog(@"%@", tires[0]);
+	NSLog(@"%@", tires[1]);
+	NSLog(@"%@", tires[2]);
+	NSLog(@"%@", tires[3]);
+}
 @end
 
 int main(int argc, const char * argv[]) {
 	@autoreleasepool {
-	    // insert code here...
-	    NSLog(@"Hello, World!");
+		Car *car;
+		car	= [Car new];
+		[car print];
 	}
     return 0;
 }
