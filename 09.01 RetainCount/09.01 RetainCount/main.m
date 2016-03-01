@@ -49,8 +49,6 @@ int main(int argc, const char * argv[]) {
 		NSLog(@"%lu", [tracker retainCount]);
 		
 		[tracker release]; // count:0, dealloc it.
-		return 0;
-		
 	}
     return 0;
 }
