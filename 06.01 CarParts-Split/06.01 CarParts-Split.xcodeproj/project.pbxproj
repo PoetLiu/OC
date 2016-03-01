@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		064355E81C85D22000CF6818 /* Tire.m in Sources */ = {isa = PBXBuildFile; fileRef = 064355E71C85D22000CF6818 /* Tire.m */; };
 		06F5F4491C801FB600004A4D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F5F4481C801FB600004A4D /* main.m */; };
 		06F5F4531C8020EC00004A4D /* Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F5F4521C8020EC00004A4D /* Engine.m */; };
-		06F5F4561C80211C00004A4D /* Tire.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F5F4551C80211C00004A4D /* Tire.m */; };
 		06F5F4591C8022C600004A4D /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F5F4581C8022C600004A4D /* Car.m */; };
 		06F5F45C1C80230400004A4D /* Slant6.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F5F45B1C80230400004A4D /* Slant6.m */; };
 		06F5F45F1C80236300004A4D /* AllWeatherRadial.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F5F45E1C80236300004A4D /* AllWeatherRadial.m */; };
@@ -28,12 +28,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		064355E61C85D1F400CF6818 /* Tire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tire.h; sourceTree = "<group>"; };
+		064355E71C85D22000CF6818 /* Tire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tire.m; sourceTree = "<group>"; };
 		06F5F4451C801FB600004A4D /* 06.01 CarParts-Split */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "06.01 CarParts-Split"; sourceTree = BUILT_PRODUCTS_DIR; };
 		06F5F4481C801FB600004A4D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		06F5F4511C8020EC00004A4D /* Engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Engine.h; sourceTree = "<group>"; };
 		06F5F4521C8020EC00004A4D /* Engine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Engine.m; sourceTree = "<group>"; };
-		06F5F4541C80211C00004A4D /* Tire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tire.h; path = ../Tire.h; sourceTree = "<group>"; };
-		06F5F4551C80211C00004A4D /* Tire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tire.m; path = ../Tire.m; sourceTree = "<group>"; };
 		06F5F4571C8022C600004A4D /* Car.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Car.h; sourceTree = "<group>"; };
 		06F5F4581C8022C600004A4D /* Car.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Car.m; sourceTree = "<group>"; };
 		06F5F45A1C80230400004A4D /* Slant6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Slant6.h; sourceTree = "<group>"; };
@@ -72,6 +72,7 @@
 		06F5F4471C801FB600004A4D /* 06.01 CarParts-Split */ = {
 			isa = PBXGroup;
 			children = (
+				064355E71C85D22000CF6818 /* Tire.m */,
 				06F5F4481C801FB600004A4D /* main.m */,
 				06F5F45D1C80236300004A4D /* AllWeatherRadial.h */,
 				06F5F45E1C80236300004A4D /* AllWeatherRadial.m */,
@@ -81,8 +82,7 @@
 				06F5F4581C8022C600004A4D /* Car.m */,
 				06F5F4511C8020EC00004A4D /* Engine.h */,
 				06F5F4521C8020EC00004A4D /* Engine.m */,
-				06F5F4541C80211C00004A4D /* Tire.h */,
-				06F5F4551C80211C00004A4D /* Tire.m */,
+				064355E61C85D1F400CF6818 /* Tire.h */,
 			);
 			path = "06.01 CarParts-Split";
 			sourceTree = "<group>";
@@ -144,7 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06F5F4491C801FB600004A4D /* main.m in Sources */,
-				06F5F4561C80211C00004A4D /* Tire.m in Sources */,
+				064355E81C85D22000CF6818 /* Tire.m in Sources */,
 				06F5F4591C8022C600004A4D /* Car.m in Sources */,
 				06F5F4531C8020EC00004A4D /* Engine.m in Sources */,
 				06F5F45C1C80230400004A4D /* Slant6.m in Sources */,
@@ -267,6 +267,7 @@
 				06F5F44E1C801FB600004A4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
