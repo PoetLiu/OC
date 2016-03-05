@@ -8,11 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface _5_01_CaseToolUITests : XCTestCase
+@interface _6_01_CaseToolUITests : XCTestCase
 
 @end
 
-@implementation _5_01_CaseToolUITests
+@implementation _6_01_CaseToolUITests
 
 - (void)setUp {
     [super setUp];
