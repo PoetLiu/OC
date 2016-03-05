@@ -2,15 +2,12 @@
 //  main.m
 //  15.01 CaseTool
 //
-//  Created by liupeng on 16/3/4.
-//  Copyright © 2016年 liupeng. All rights reserved.
+//  Created by liuPeng on 16/3/5.
+//  Copyright © 2016年 liuPeng. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "AppDelegate.h"
+#import <Cocoa/Cocoa.h>
 
-int main(int argc, char * argv[]) {
-	@autoreleasepool {
-	    return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
-	}
+int main(int argc, const char * argv[]) {
+    return NSApplicationMain(argc, argv);
 }

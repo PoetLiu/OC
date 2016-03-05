@@ -2,16 +2,18 @@
 //  AppDelegate.h
 //  15.01 CaseTool
 //
-//  Created by liupeng on 16/3/4.
-//  Copyright © 2016年 liupeng. All rights reserved.
+//  Created by liuPeng on 16/3/5.
+//  Copyright © 2016年 liuPeng. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Cocoa/Cocoa.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+@property (weak) IBOutlet NSTextField *textField;
+@property (weak) IBOutlet NSTextField *resultsField;
 
-
+- (IBAction)uppercae:(id)sender;
+- (IBAction)lowercase:(id)sender;
 @end
 
