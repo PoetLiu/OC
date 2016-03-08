@@ -1,2 +1,3 @@
 # Objective-C
-Learn OC
+Learn OC On Mac.
+Example code for this book.
