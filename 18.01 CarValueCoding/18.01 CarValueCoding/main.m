@@ -30,11 +30,19 @@ int main(int argc, const char * argv[]) {
 		Slant6 *engine	= [[[Slant6 alloc] init] autorelease];
 		car.engine	= engine;
 		NSLog(@"Car is %@", car);
+		
+		// set/get a value through a key, commonly, the key is equal to the name of the value.
 		NSLog(@"horsepower is %@", [engine valueForKey:@"horsepower"]);
 		[engine setValue:[NSNumber numberWithInt:150] forKey:@"horsepower"];
 		NSLog(@"horsepower is %@", [engine valueForKey:@"horsepower"]);
+		
+		// set/get a value through a key path.
 		[car setValue:[NSNumber numberWithInt:155] forKeyPath:@"engine.horsepower"];
 		NSLog(@"horsepower is %@", [car valueForKeyPath	:@"engine.horsepower"]);
+		
+		// get a result of NSArray.
+		NSArray *pressures = [car valueForKeyPath:@"tires.pressure"];
+		NSLog(@"%@", pressures);
 	}
 	return 0;
 }
