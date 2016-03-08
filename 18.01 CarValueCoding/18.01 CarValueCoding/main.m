@@ -34,7 +34,7 @@ int main(int argc, const char * argv[]) {
 		[engine setValue:[NSNumber numberWithInt:150] forKey:@"horsepower"];
 		NSLog(@"horsepower is %@", [engine valueForKey:@"horsepower"]);
 		[car setValue:[NSNumber numberWithInt:155] forKeyPath:@"engine.horsepower"];
-		NSLog(@"horsepower is %@", [car valueForKeyPath:@"engine.horsepower"]);
+		NSLog(@"horsepower is %@", [car valueForKeyPath	:@"engine.horsepower"]);
 	}
 	return 0;
 }
