@@ -17,6 +17,10 @@
 @end
 
 @implementation ToDoListTableViewController
+- (IBAction)editButtonAction:(id)sender {
+	[self setEditing:![super isEditing] animated:YES];
+}
+
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue{
 	AddToDoItemViewController *source = [segue sourceViewController];
 	ToDoItem *item	= source.toDoItem;
@@ -24,6 +28,13 @@
 		[self.toDoItems addObject:item];
 		[self.tableView reloadData];
 	}
+}
+
+- (void) setEditing:(BOOL)editing animated:(BOOL)animated {
+	[super setEditing:editing animated:animated];
+	[self.tableView setEditing:editing animated:animated];
+	self.addButtonItem.enabled	= !editing;
+	self.editButtonItem.title	= editing ? @"done" : @"edit";
 }
 
 - (void) loadInitialData {
@@ -42,7 +53,6 @@
     [super viewDidLoad];
 	self.toDoItems	= [[NSMutableArray alloc] init];
 	[self loadInitialData];
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -90,31 +100,30 @@
 }
 */
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+		[self.toDoItems removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
 
-/*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+	ToDoItem *fromItem = [self.toDoItems objectAtIndex:fromIndexPath.row];
+	ToDoItem *toItem = [self.toDoItems objectAtIndex:toIndexPath.row];
+	[self.toDoItems replaceObjectAtIndex:toIndexPath.row withObject:fromItem];
+	[self.toDoItems replaceObjectAtIndex:fromIndexPath.row withObject:toItem];
 }
-*/
 
-/*
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
-*/
 
 /*
 #pragma mark - Navigation
@@ -134,4 +143,6 @@
 	[tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
+- (IBAction)editButton:(id)sender {
+}
 @end

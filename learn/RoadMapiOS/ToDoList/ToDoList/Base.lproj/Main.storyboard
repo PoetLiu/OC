@@ -40,12 +40,21 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="To-Do List" id="Le8-99-bfc">
+                        <barButtonItem key="leftBarButtonItem" title="edit" id="JOZ-G8-j0a">
+                            <connections>
+                                <action selector="editButtonAction:" destination="tSG-9y-wgb" id="vlz-Gi-3qM"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="UNX-ef-Lmm">
                             <connections>
                                 <segue destination="Y6N-2j-KUD" kind="presentation" id="RvH-6e-sUt"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addButtonItem" destination="UNX-ef-Lmm" id="vUd-Zr-ilY"/>
+                        <outlet property="editButtonItem" destination="JOZ-G8-j0a" id="Kuc-wh-1YZ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uzW-Eg-szW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -63,7 +72,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="to-do item" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l2O-uY-MK9">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="to-do item" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l2O-uY-MK9">
                                 <rect key="frame" x="20" y="290" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -71,10 +80,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="l2O-uY-MK9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2H2-t3-VUy"/>
+                            <constraint firstItem="l2O-uY-MK9" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="8a0-sY-wtS"/>
                             <constraint firstItem="l2O-uY-MK9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="E6q-fc-QOk"/>
+                            <constraint firstItem="l2O-uY-MK9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="5" id="QpT-cK-Xqq"/>
+                            <constraint firstItem="l2O-uY-MK9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="TbN-yU-3vE"/>
                             <constraint firstItem="l2O-uY-MK9" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="dvC-Gq-HpW"/>
                             <constraint firstItem="l2O-uY-MK9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ftN-og-8cf"/>
-                            <constraint firstItem="l2O-uY-MK9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="iuM-9r-ace"/>
+                            <constraint firstItem="l2O-uY-MK9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="5" id="iuM-9r-ace"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add To-Do Item" id="Lsk-p6-0bW">
