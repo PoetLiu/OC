@@ -40,11 +40,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="To-Do List" id="Le8-99-bfc">
-                        <barButtonItem key="leftBarButtonItem" title="edit" id="JOZ-G8-j0a">
-                            <connections>
-                                <action selector="editButtonAction:" destination="tSG-9y-wgb" id="vlz-Gi-3qM"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="UNX-ef-Lmm">
                             <connections>
                                 <segue destination="Y6N-2j-KUD" kind="presentation" id="RvH-6e-sUt"/>
@@ -53,7 +48,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButtonItem" destination="UNX-ef-Lmm" id="vUd-Zr-ilY"/>
-                        <outlet property="editButtonItem" destination="JOZ-G8-j0a" id="Kuc-wh-1YZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uzW-Eg-szW" userLabel="First Responder" sceneMemberID="firstResponder"/>

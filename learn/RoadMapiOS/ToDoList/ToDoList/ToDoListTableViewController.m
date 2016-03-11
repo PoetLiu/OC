@@ -17,6 +17,7 @@
 @end
 
 @implementation ToDoListTableViewController
+
 - (IBAction)editButtonAction:(id)sender {
 	[self setEditing:![super isEditing] animated:YES];
 }
@@ -34,7 +35,6 @@
 	[super setEditing:editing animated:animated];
 	[self.tableView setEditing:editing animated:animated];
 	self.addButtonItem.enabled	= !editing;
-	self.editButtonItem.title	= editing ? @"done" : @"edit";
 }
 
 - (void) loadInitialData {
@@ -57,7 +57,7 @@
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
