@@ -13,6 +13,15 @@
 @end
 
 @implementation ToDoItem
+- (id) init
+{
+    if (self = [super init]) {
+        _creationDate = [NSDate date];
+        NSLog(@"hello %@", _creationDate);
+    }
+    return (self);
+}
+
 - (void) encodeWithCoder:(NSCoder *)coder
 {
 	[coder encodeObject:self.itemName forKey:@"itemName"];

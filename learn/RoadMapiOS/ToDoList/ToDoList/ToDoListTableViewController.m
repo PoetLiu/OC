@@ -13,6 +13,7 @@
 @interface ToDoListTableViewController ()
 
 @property NSMutableArray *toDoItems;
+@property NSDateFormatter *dateFormatter;
 
 @end
 
@@ -46,15 +47,17 @@
 		NSArray *documentPaths	= NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 		paramFile	= [[NSString alloc] initWithFormat:@"%@/%@", documentPaths[0], @"text"];
 	}
+    NSLog(@"%@", paramFile);
 	
-	NSLog(@"%@", paramFile);
-	return (self.toDoItems = [NSKeyedUnarchiver unarchiveObjectWithFile:paramFile]) ? YES:NO;
+    NSDictionary *param = [NSKeyedUnarchiver unarchiveObjectWithFile:paramFile];
+    self.toDoItems  = [param objectForKey:@"toDoItems"];
+    self.dateFormatter  = [param objectForKey:@"dateFormatter"];
+    return (self.toDoItems != nil && self.dateFormatter != nil);
 }
 
 - (void) saveParam {
-	NSData *data;
-	data	= [NSKeyedArchiver archivedDataWithRootObject:self.toDoItems];
-	[data writeToFile:paramFile atomically:YES];
+	NSDictionary *param  = [[NSDictionary alloc] initWithObjectsAndKeys:self.toDoItems, @"toDoItems", self.dateFormatter, @"dateFormatter", nil];
+	[NSKeyedArchiver archiveRootObject:param toFile:paramFile];
 }
 
 - (void) loadInitialData {
@@ -70,6 +73,8 @@
 		ToDoItem *item3 = [[ToDoItem alloc] init];
 		item3.itemName	= @"Read a book";
 		[self.toDoItems addObject:item3];
+        self.dateFormatter  = [[NSDateFormatter alloc] init];
+        [self.dateFormatter setDateFormat:@"hh:mm:ss"];
 	}
 }
 
@@ -100,19 +105,23 @@
     return [self.toDoItems count];
 }
 
+- (UITableViewCell *)tableViewCell:(UITableViewCell *)cell dataItem:(ToDoItem *)item {
+    cell.textLabel.text	= item.itemName;
+    cell.detailTextLabel.text	= [self.dateFormatter stringFromDate:item.creationDate];
+
+    if (item.completed) {
+        cell.accessoryType	= UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType	= UITableViewCellAccessoryNone;
+    }
+    
+    return cell;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListPrototypeCell" forIndexPath:indexPath];
 	ToDoItem *toDoItem	= [self.toDoItems objectAtIndex:indexPath.row];
-	cell.textLabel.text	= toDoItem.itemName;
-	cell.detailTextLabel.text	= [toDoItem.creationDate description];
-	NSLog(@"%@", toDoItem.creationDate);
-	if (toDoItem.completed) {
-		cell.accessoryType	= UITableViewCellAccessoryCheckmark;
-	} else {
-		cell.accessoryType	= UITableViewCellAccessoryNone;
-	}
-    
-    return cell;
+    return [self tableViewCell:cell dataItem:toDoItem];
 }
 
 
