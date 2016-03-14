@@ -48,7 +48,7 @@
 	}
 	
 	NSLog(@"%@", paramFile);
-	return !!((self.toDoItems = [NSKeyedUnarchiver unarchiveObjectWithFile:paramFile]));
+	return (self.toDoItems = [NSKeyedUnarchiver unarchiveObjectWithFile:paramFile]) ? YES:NO;
 }
 
 - (void) saveParam {
@@ -104,7 +104,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListPrototypeCell" forIndexPath:indexPath];
 	ToDoItem *toDoItem	= [self.toDoItems objectAtIndex:indexPath.row];
 	cell.textLabel.text	= toDoItem.itemName;
-	
+	cell.detailTextLabel.text	= [toDoItem.creationDate description];
+	NSLog(@"%@", toDoItem.creationDate);
 	if (toDoItem.completed) {
 		cell.accessoryType	= UITableViewCellAccessoryCheckmark;
 	} else {
