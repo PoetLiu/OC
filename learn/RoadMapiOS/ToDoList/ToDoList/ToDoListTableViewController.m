@@ -17,6 +17,9 @@
 @end
 
 @implementation ToDoListTableViewController
+{
+	NSString *paramFile;
+}
 
 - (IBAction)editButtonAction:(id)sender {
 	[self setEditing:![super isEditing] animated:YES];
@@ -27,6 +30,7 @@
 	ToDoItem *item	= source.toDoItem;
 	if (item != nil) {
 		[self.toDoItems addObject:item];
+		[self saveParam];
 		[self.tableView reloadData];
 	}
 }
@@ -37,21 +41,40 @@
 	self.addButtonItem.enabled	= !editing;
 }
 
+- (BOOL) loadParam {
+	if (!paramFile) {
+		NSArray *documentPaths	= NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+		paramFile	= [[NSString alloc] initWithFormat:@"%@/%@", documentPaths[0], @"text"];
+	}
+	
+	NSLog(@"%@", paramFile);
+	return (self.toDoItems = [NSKeyedUnarchiver unarchiveObjectWithFile:paramFile]) ? YES:NO;
+}
+
+- (void) saveParam {
+	NSData *data;
+	data	= [NSKeyedArchiver archivedDataWithRootObject:self.toDoItems];
+	[data writeToFile:paramFile atomically:YES];
+}
+
 - (void) loadInitialData {
-	ToDoItem *item1 = [[ToDoItem alloc] init];
-	item1.itemName	= @"Buy milk";
-	[self.toDoItems addObject:item1];
-	ToDoItem *item2 = [[ToDoItem alloc] init];
-	item2.itemName	= @"Buy eggs";
-	[self.toDoItems addObject:item2];
-	ToDoItem *item3 = [[ToDoItem alloc] init];
-	item3.itemName	= @"Read a book";
-	[self.toDoItems addObject:item3];
+	if (![self loadParam]) {
+		NSLog(@"faild to load param");
+		self.toDoItems	= [[NSMutableArray alloc] init];
+		ToDoItem *item1 = [[ToDoItem alloc] init];
+		item1.itemName	= @"Buy milk";
+		[self.toDoItems addObject:item1];
+		ToDoItem *item2 = [[ToDoItem alloc] init];
+		item2.itemName	= @"Buy eggs";
+		[self.toDoItems addObject:item2];
+		ToDoItem *item3 = [[ToDoItem alloc] init];
+		item3.itemName	= @"Read a book";
+		[self.toDoItems addObject:item3];
+	}
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	self.toDoItems	= [[NSMutableArray alloc] init];
 	[self loadInitialData];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -81,7 +104,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListPrototypeCell" forIndexPath:indexPath];
 	ToDoItem *toDoItem	= [self.toDoItems objectAtIndex:indexPath.row];
 	cell.textLabel.text	= toDoItem.itemName;
-	
+	cell.detailTextLabel.text	= [toDoItem.creationDate description];
+	NSLog(@"%@", toDoItem.creationDate);
 	if (toDoItem.completed) {
 		cell.accessoryType	= UITableViewCellAccessoryCheckmark;
 	} else {
@@ -105,6 +129,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
 		[self.toDoItems removeObjectAtIndex:indexPath.row];
+		[self saveParam];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
