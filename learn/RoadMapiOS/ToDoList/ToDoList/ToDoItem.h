@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ToDoItem : NSObject
+@interface ToDoItem : NSObject <NSCoding>
 @property NSString *itemName;
 @property BOOL completed;
 @property (readonly) NSDate *creationDate;
