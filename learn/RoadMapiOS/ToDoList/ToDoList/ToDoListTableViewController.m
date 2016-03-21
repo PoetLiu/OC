@@ -66,12 +66,17 @@
 		self.toDoItems	= [[NSMutableArray alloc] init];
 		ToDoItem *item1 = [[ToDoItem alloc] init];
 		item1.itemName	= @"Buy milk";
+		item1.imgName	= @"0";
 		[self.toDoItems addObject:item1];
+		
 		ToDoItem *item2 = [[ToDoItem alloc] init];
 		item2.itemName	= @"Buy eggs";
+		item2.imgName	= @"1";
 		[self.toDoItems addObject:item2];
+		
 		ToDoItem *item3 = [[ToDoItem alloc] init];
 		item3.itemName	= @"Read a book";
+		item3.imgName	= @"2";
 		[self.toDoItems addObject:item3];
         self.dateFormatter  = [[NSDateFormatter alloc] init];
         [self.dateFormatter setDateFormat:@"hh:mm:ss"];
@@ -107,8 +112,9 @@
 
 - (UITableViewCell *)tableViewCell:(UITableViewCell *)cell dataItem:(ToDoItem *)item {
     cell.textLabel.text	= item.itemName;
-    cell.detailTextLabel.text	= [self.dateFormatter stringFromDate:item.creationDate];
-
+	cell.detailTextLabel.text	= [self.dateFormatter stringFromDate:item.creationDate];
+	cell.imageView.image	= [UIImage imageNamed:item.imgName];
+	
     if (item.completed) {
         cell.accessoryType	= UITableViewCellAccessoryCheckmark;
     } else {

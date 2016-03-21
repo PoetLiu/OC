@@ -27,6 +27,7 @@
 	[coder encodeObject:self.itemName forKey:@"itemName"];
 	[coder encodeBool:self.completed forKey:@"completed"];
 	[coder encodeObject:self.creationDate forKey:@"creationDate"];
+	[coder encodeObject:self.imgName forKey:@"imgName"];
 }
 
 - (id) initWithCoder:(NSCoder *)decoder
@@ -35,6 +36,7 @@
 		self.itemName	= [decoder decodeObjectForKey:@"itemName"];
 		self.completed	= [decoder decodeBoolForKey:@"completed"];
 		_creationDate	= [decoder decodeObjectForKey:@"creationDate"];
+		self.imgName	= [decoder decodeObjectForKey:@"imgName"];
 	}
 	return (self);
 }
