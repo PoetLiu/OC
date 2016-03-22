@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		06FC475D1C9FE9BE001BD2A5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FC475C1C9FE9BE001BD2A5 /* main.m */; };
 		06FC47601C9FE9BE001BD2A5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FC475F1C9FE9BE001BD2A5 /* AppDelegate.m */; };
-		06FC47631C9FE9BE001BD2A5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FC47621C9FE9BE001BD2A5 /* ViewController.m */; };
 		06FC47661C9FE9BE001BD2A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06FC47641C9FE9BE001BD2A5 /* Main.storyboard */; };
 		06FC47681C9FE9BE001BD2A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06FC47671C9FE9BE001BD2A5 /* Assets.xcassets */; };
 		06FC476B1C9FE9BE001BD2A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06FC47691C9FE9BE001BD2A5 /* LaunchScreen.storyboard */; };
+		06FC47741CA13466001BD2A5 /* ConversionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FC47731CA13466001BD2A5 /* ConversionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +20,12 @@
 		06FC475C1C9FE9BE001BD2A5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		06FC475E1C9FE9BE001BD2A5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		06FC475F1C9FE9BE001BD2A5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		06FC47611C9FE9BE001BD2A5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		06FC47621C9FE9BE001BD2A5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		06FC47651C9FE9BE001BD2A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		06FC47671C9FE9BE001BD2A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		06FC476A1C9FE9BE001BD2A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		06FC476C1C9FE9BE001BD2A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06FC47721CA13466001BD2A5 /* ConversionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversionViewController.h; sourceTree = "<group>"; };
+		06FC47731CA13466001BD2A5 /* ConversionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +60,8 @@
 			children = (
 				06FC475E1C9FE9BE001BD2A5 /* AppDelegate.h */,
 				06FC475F1C9FE9BE001BD2A5 /* AppDelegate.m */,
-				06FC47611C9FE9BE001BD2A5 /* ViewController.h */,
-				06FC47621C9FE9BE001BD2A5 /* ViewController.m */,
+				06FC47721CA13466001BD2A5 /* ConversionViewController.h */,
+				06FC47731CA13466001BD2A5 /* ConversionViewController.m */,
 				06FC47641C9FE9BE001BD2A5 /* Main.storyboard */,
 				06FC47671C9FE9BE001BD2A5 /* Assets.xcassets */,
 				06FC47691C9FE9BE001BD2A5 /* LaunchScreen.storyboard */,
@@ -150,8 +150,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06FC47631C9FE9BE001BD2A5 /* ViewController.m in Sources */,
 				06FC47601C9FE9BE001BD2A5 /* AppDelegate.m in Sources */,
+				06FC47741CA13466001BD2A5 /* ConversionViewController.m in Sources */,
 				06FC475D1C9FE9BE001BD2A5 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
