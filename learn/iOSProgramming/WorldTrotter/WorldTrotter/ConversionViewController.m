@@ -15,12 +15,37 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	NSLog(@"ConversionViewController loaded its view");
     // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (UIColor *)getUIColorByOrder {
+	static	NSInteger	id = 0;
+	switch (id++) {
+		case 0:
+			return [UIColor blueColor];
+		case 1:
+			return [UIColor whiteColor];
+		case 2:
+			return [UIColor grayColor];
+		case 3:
+			return [UIColor redColor];
+		case 4:
+			return [UIColor greenColor];
+		default:
+			id	= 0;
+			return [self getUIColorByOrder];
+	}
+	return nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[self.view setBackgroundColor:[self getUIColorByOrder]];
 }
 
 /*
@@ -48,8 +73,11 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+	NSLocale *currentLocale	= [NSLocale currentLocale];
+	NSString *decimalSeparator = [currentLocale objectForKey:NSLocaleDecimalSeparator];
+	NSLog(@"%@", decimalSeparator);
 	// Avoid input "." more than once.
-	if ([string rangeOfString:@"."].length && [textField.text rangeOfString:@"."].length) {
+	if ([string rangeOfString:decimalSeparator].length && [textField.text rangeOfString:decimalSeparator].length) {
 		return NO;
 	} else {
 		return YES;

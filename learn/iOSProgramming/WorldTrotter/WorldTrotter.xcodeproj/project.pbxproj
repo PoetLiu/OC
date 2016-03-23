@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		065A1BB61CA2801600D570BF /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 065A1BB51CA2801600D570BF /* WebViewController.m */; };
+		067F596E1CA22B8200CF2581 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 067F596D1CA22B8200CF2581 /* MapViewController.m */; };
 		06ECF8F81CA18AC600527298 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06ECF8F71CA18AC600527298 /* MapKit.framework */; };
 		06FC475D1C9FE9BE001BD2A5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FC475C1C9FE9BE001BD2A5 /* main.m */; };
 		06FC47601C9FE9BE001BD2A5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FC475F1C9FE9BE001BD2A5 /* AppDelegate.m */; };
@@ -17,6 +19,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		065A1BB41CA2801600D570BF /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		065A1BB51CA2801600D570BF /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		067F596C1CA22B8100CF2581 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		067F596D1CA22B8200CF2581 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		06ECF8F71CA18AC600527298 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		06FC47581C9FE9BE001BD2A5 /* WorldTrotter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorldTrotter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06FC475C1C9FE9BE001BD2A5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -66,6 +72,10 @@
 				06FC475F1C9FE9BE001BD2A5 /* AppDelegate.m */,
 				06FC47721CA13466001BD2A5 /* ConversionViewController.h */,
 				06FC47731CA13466001BD2A5 /* ConversionViewController.m */,
+				067F596C1CA22B8100CF2581 /* MapViewController.h */,
+				067F596D1CA22B8200CF2581 /* MapViewController.m */,
+				065A1BB41CA2801600D570BF /* WebViewController.h */,
+				065A1BB51CA2801600D570BF /* WebViewController.m */,
 				06FC47641C9FE9BE001BD2A5 /* Main.storyboard */,
 				06FC47671C9FE9BE001BD2A5 /* Assets.xcassets */,
 				06FC47691C9FE9BE001BD2A5 /* LaunchScreen.storyboard */,
@@ -155,8 +165,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				06FC47601C9FE9BE001BD2A5 /* AppDelegate.m in Sources */,
+				065A1BB61CA2801600D570BF /* WebViewController.m in Sources */,
 				06FC47741CA13466001BD2A5 /* ConversionViewController.m in Sources */,
 				06FC475D1C9FE9BE001BD2A5 /* main.m in Sources */,
+				067F596E1CA22B8200CF2581 /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
