@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		065A1BB61CA2801600D570BF /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 065A1BB51CA2801600D570BF /* WebViewController.m */; };
+		0667650F1CA3B6470046B2A0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 066765111CA3B6470046B2A0 /* Localizable.strings */; };
 		067F596E1CA22B8200CF2581 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 067F596D1CA22B8200CF2581 /* MapViewController.m */; };
 		06ECF8F81CA18AC600527298 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06ECF8F71CA18AC600527298 /* MapKit.framework */; };
 		06FC475D1C9FE9BE001BD2A5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FC475C1C9FE9BE001BD2A5 /* main.m */; };
@@ -21,9 +22,14 @@
 /* Begin PBXFileReference section */
 		065A1BB41CA2801600D570BF /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		065A1BB51CA2801600D570BF /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		066765101CA3B6470046B2A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		066765121CA3B6560046B2A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		066765131CA3B6570046B2A0 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		067F596C1CA22B8100CF2581 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		067F596D1CA22B8200CF2581 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		06ECF8F71CA18AC600527298 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		06F5844F1CA38F9C000AB9E1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		06F584501CA39022000AB9E1 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		06FC47581C9FE9BE001BD2A5 /* WorldTrotter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorldTrotter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06FC475C1C9FE9BE001BD2A5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		06FC475E1C9FE9BE001BD2A5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -77,6 +83,7 @@
 				065A1BB41CA2801600D570BF /* WebViewController.h */,
 				065A1BB51CA2801600D570BF /* WebViewController.m */,
 				06FC47641C9FE9BE001BD2A5 /* Main.storyboard */,
+				066765111CA3B6470046B2A0 /* Localizable.strings */,
 				06FC47671C9FE9BE001BD2A5 /* Assets.xcassets */,
 				06FC47691C9FE9BE001BD2A5 /* LaunchScreen.storyboard */,
 				06FC476C1C9FE9BE001BD2A5 /* Info.plist */,
@@ -135,6 +142,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 06FC474F1C9FE9BE001BD2A5;
 			productRefGroup = 06FC47591C9FE9BE001BD2A5 /* Products */;
@@ -152,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06FC476B1C9FE9BE001BD2A5 /* LaunchScreen.storyboard in Resources */,
+				0667650F1CA3B6470046B2A0 /* Localizable.strings in Resources */,
 				06FC47681C9FE9BE001BD2A5 /* Assets.xcassets in Resources */,
 				06FC47661C9FE9BE001BD2A5 /* Main.storyboard in Resources */,
 			);
@@ -175,10 +184,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		066765111CA3B6470046B2A0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				066765101CA3B6470046B2A0 /* Base */,
+				066765121CA3B6560046B2A0 /* en */,
+				066765131CA3B6570046B2A0 /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		06FC47641C9FE9BE001BD2A5 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				06FC47651C9FE9BE001BD2A5 /* Base */,
+				06F5844F1CA38F9C000AB9E1 /* en */,
+				06F584501CA39022000AB9E1 /* es */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

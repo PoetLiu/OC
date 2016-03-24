@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "06FC47571C9FE9BE001BD2A5"
-               BuildableName = "WorldTrotter.app"
-               BlueprintName = "WorldTrotter"
-               ReferencedContainer = "container:WorldTrotter.xcodeproj">
+               BlueprintIdentifier = "0667651C1CA3E6710046B2A0"
+               BuildableName = "Homepwner.app"
+               BlueprintName = "Homepwner"
+               ReferencedContainer = "container:Homepwner.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "06FC47571C9FE9BE001BD2A5"
-            BuildableName = "WorldTrotter.app"
-            BlueprintName = "WorldTrotter"
-            ReferencedContainer = "container:WorldTrotter.xcodeproj">
+            BlueprintIdentifier = "0667651C1CA3E6710046B2A0"
+            BuildableName = "Homepwner.app"
+            BlueprintName = "Homepwner"
+            ReferencedContainer = "container:Homepwner.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -50,17 +50,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES"
-      language = "es"
-      region = "ES">
+      allowLocationSimulation = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "06FC47571C9FE9BE001BD2A5"
-            BuildableName = "WorldTrotter.app"
-            BlueprintName = "WorldTrotter"
-            ReferencedContainer = "container:WorldTrotter.xcodeproj">
+            BlueprintIdentifier = "0667651C1CA3E6710046B2A0"
+            BuildableName = "Homepwner.app"
+            BlueprintName = "Homepwner"
+            ReferencedContainer = "container:Homepwner.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -76,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "06FC47571C9FE9BE001BD2A5"
-            BuildableName = "WorldTrotter.app"
-            BlueprintName = "WorldTrotter"
-            ReferencedContainer = "container:WorldTrotter.xcodeproj">
+            BlueprintIdentifier = "0667651C1CA3E6710046B2A0"
+            BuildableName = "Homepwner.app"
+            BlueprintName = "Homepwner"
+            ReferencedContainer = "container:Homepwner.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

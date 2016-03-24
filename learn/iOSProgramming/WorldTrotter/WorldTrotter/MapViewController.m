@@ -18,7 +18,11 @@
 	self.mapView	= [[MKMapView alloc] init];
 	[self setView:self.mapView];
 	
-	UISegmentedControl *segmentedControl	= [[UISegmentedControl alloc] initWithItems:@[@"Standard", @"Hybrid", @"Satellite"]];
+	NSString *standardString	= NSLocalizedString(@"Standard", @"Standard map view");
+	NSString *satelliteString	= NSLocalizedString(@"Satellite", @"Satellite map view");
+	NSString *hybridString		= NSLocalizedString(@"Hybrid", @"Hybrid map view");
+	
+	UISegmentedControl *segmentedControl	= [[UISegmentedControl alloc] initWithItems:@[standardString, satelliteString, hybridString]];
 	segmentedControl.backgroundColor	= [[UIColor whiteColor] colorWithAlphaComponent:0.5];
 	segmentedControl.selectedSegmentIndex	= 0;
 	segmentedControl.translatesAutoresizingMaskIntoConstraints	= false;

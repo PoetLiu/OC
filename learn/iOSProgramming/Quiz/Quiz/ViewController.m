@@ -10,15 +10,38 @@
 #import "CustomItem.h"
 
 @interface ViewController ()
-@property NSMutableArray *data;
+@property (strong, nonatomic)NSMutableArray *data;
 @property NSInteger currentQuestionIndex;
 @end
 
 @implementation ViewController
 
-- (void)updateQuestionLableText {
+- (void)animateLabelTransitions {
+	CGFloat screenWidth	= self.view.frame.size.width;
+	self.nextQuestionLabelCenterXConstraint.constant	= 0;
+	self.currentQuestionLabelCenterXConstraint.constant	+= screenWidth;
+	
+	void(^animationBlock)(void)	= ^(void) {
+		self.currentQuestionLabel.alpha	= 0;
+		self.nextQuestionLabel.alpha	= 1;
+		[self.view layoutIfNeeded];
+		NSLog(@"Hello");
+	};
+	[UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionAllowAnimatedContent animations:animationBlock completion:^(BOOL in){
+		UILabel *tmp = self.currentQuestionLabel;
+		self.currentQuestionLabel	= self.nextQuestionLabel;
+		self.nextQuestionLabel		= tmp;
+		
+		NSLayoutConstraint *tmp1	= self.currentQuestionLabelCenterXConstraint;
+		self.currentQuestionLabelCenterXConstraint	= self.nextQuestionLabelCenterXConstraint;
+		self.nextQuestionLabelCenterXConstraint		= tmp1;
+		[self updateOffScreenLabel];
+		}];
+}
+
+- (void)updateQuestionLableText:(UILabel *)questionLabel {
 	CustomItem *item	= self.data[self.currentQuestionIndex];
-	self.questionLabel.text		= item.question;
+	questionLabel.text		= item.question;
 }
 
 - (void)updateAnswerLableText {
@@ -39,13 +62,22 @@
 	[self.data addObject:item];
 	
 	self.currentQuestionIndex	= 0;
-	[self updateQuestionLableText];
+	[self updateQuestionLableText:self.currentQuestionLabel];
 }
-
+- (void)updateOffScreenLabel {
+	CGFloat screenWidth	= self.view.frame.size.width;
+	self.nextQuestionLabelCenterXConstraint.constant	= -screenWidth;
+}
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	[self initParam];
+	[self updateOffScreenLabel];
 	// Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	self.nextQuestionLabel.alpha	= 0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,8 +90,9 @@
 	if (self.currentQuestionIndex == self.data.count) {
 		self.currentQuestionIndex	= 0;
 	}
-	[self updateQuestionLableText];
+	[self updateQuestionLableText:self.nextQuestionLabel];
 	[self initAnswerLableText];
+	[self animateLabelTransitions];
 }
 
 - (IBAction)showAnswer:(id)sender {
