@@ -16,7 +16,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+	CGFloat statusBarHeight	= [[UIApplication sharedApplication] statusBarFrame].size.height;
+	UIEdgeInsets insets = UIEdgeInsetsMake(statusBarHeight, 0, 0, 0);
+	self.tableView.contentInset	= insets;
+	self.tableView.scrollIndicatorInsets = insets;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -32,24 +35,24 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return [self.itemStore.allItems count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+	
     // Configure the cell...
-    
+	Item *item = [self.itemStore.allItems objectAtIndex:indexPath.row];
+	cell.textLabel.text	= item.name;
+	cell.detailTextLabel.text	= [NSString stringWithFormat:@"%ld", (long)item.valueInDollars];
+	
     return cell;
 }
-*/
 
 /*
 // Override to support conditional editing of the table view.
@@ -59,23 +62,31 @@
 }
 */
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+		Item *deleteItem = [self.itemStore.allItems objectAtIndex:indexPath.row];
+		NSString *title = [[NSString alloc] initWithFormat:@"Delete %@", deleteItem.name];
+		NSString *msg = @"Are you sure want to delete this item?";
+		UIAlertController *ac = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleActionSheet];
+		UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+		[ac addAction:cancelAction];
+		UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+			// Delete the row from the data source
+			[self.itemStore removeItem:deleteItem];
+			[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+		}];
+		[ac addAction:deleteAction];
+		[self presentViewController:ac animated:YES completion:nil];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
 
-/*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+	[self.itemStore moveItemAtIndex:fromIndexPath.row toIndex:toIndexPath.row];
 }
-*/
 
 /*
 // Override to support conditional rearranging of the table view.
@@ -95,4 +106,23 @@
 }
 */
 
+- (IBAction)toggleEditingMode:(id)sender {
+	UIButton *editButton = (UIButton *)sender;
+	if (self.editing) {
+		[editButton setTitle:@"Edit" forState:UIControlStateNormal];
+		[self setEditing:false animated:true];
+	} else {
+		[editButton setTitle:@"Done" forState:UIControlStateNormal];
+		[self setEditing:true animated:true];
+	}
+}
+
+- (IBAction)addNewItem:(id)sender {
+	Item *newItem = [self.itemStore createItem];
+	NSInteger index = 0;
+	if ((index = [self.itemStore.allItems indexOfObject:newItem]) != NSNotFound) {
+		NSIndexPath *indexPath	= [NSIndexPath indexPathForRow:index inSection:0];
+		[self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+	}
+}
 @end

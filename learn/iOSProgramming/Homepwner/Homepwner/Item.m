@@ -23,7 +23,21 @@
 	if (random) {
 		NSArray *adjectives = [[NSArray alloc] initWithObjects:@"Fluffy", @"Rustry", @"Shiny", nil];
 		NSArray *nouns	= [[NSArray alloc] initWithObjects:@"Bear", @"Spork", @"Mac", nil];
+		
+		uint32_t idx	= arc4random_uniform((uint32_t)[adjectives count]);
+		NSString *randomAdjective	= adjectives[idx];
+		
+		idx	= arc4random_uniform((uint32_t)[nouns count]);
+		NSString *randomNoun	= nouns[idx];
+		
+		NSString *randomName	= [[randomAdjective stringByAppendingString:@" " ] stringByAppendingString: randomNoun];
+		NSInteger randomValue	= arc4random_uniform(100);
+		NSString *randomSerialNumber	= [[[[NSUUID UUID] UUIDString] componentsSeparatedByString:@"-"] firstObject];
+		
+		return [self initWithName:randomName serialNumber:randomSerialNumber valueInDollars:randomValue];
+	} else {
+		return [self initWithName:@"" serialNumber:nil valueInDollars:0];
 	}
-	return self;
+
 }
 @end

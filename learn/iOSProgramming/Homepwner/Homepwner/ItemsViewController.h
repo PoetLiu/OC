@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ItemStore.h"
 
 @interface ItemsViewController : UITableViewController
-
+@property (strong, nonatomic) ItemStore *itemStore;
+- (IBAction)toggleEditingMode:(id)sender;
+- (IBAction)addNewItem:(id)sender;
 @end

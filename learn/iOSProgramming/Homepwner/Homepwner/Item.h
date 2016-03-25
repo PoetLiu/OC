@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface Item : NSObject
-@property (strong, nonatomic, nonnull) NSString *name;
-@property (strong, nonatomic, nullable) NSString *serialNumber;
-@property (strong, nonatomic, nonnull) NSDate *dateCreated;
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *serialNumber;
+@property (strong, nonatomic) NSDate *dateCreated;
 @property NSInteger valueInDollars;
 
-- (id) initWithName:(NSString  * _Nonnull)name serialNumber:(NSString * _Nullable)sn valueInDollars:(NSInteger)value;
+- (id) initWithName:(NSString *)name serialNumber:(NSString *)sn valueInDollars:(NSInteger)value;
+- (id) initByRandom:(BOOL)random;
 @end
