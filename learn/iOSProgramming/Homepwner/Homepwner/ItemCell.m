@@ -20,4 +20,12 @@
     // Configure the view for the selected state
 }
 
+- (void) updateLabels {
+	UIFont * bodyFont	= [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+	self.nameLabel.font	= bodyFont;
+	self.valueLabel.font	= bodyFont;
+	
+	UIFont *caption1Font	= [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+	self.serialNumberLabel.font	= caption1Font;
+}
 @end

@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ItemStore.h"
-
+#import "ItemCell.h"
+#import "DetailViewController.h"
 @interface ItemsViewController : UITableViewController
 @property (strong, nonatomic) ItemStore *itemStore;
 - (IBAction)toggleEditingMode:(id)sender;

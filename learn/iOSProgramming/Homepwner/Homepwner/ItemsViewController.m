@@ -20,6 +20,9 @@
 	UIEdgeInsets insets = UIEdgeInsetsMake(statusBarHeight, 0, 0, 0);
 	self.tableView.contentInset	= insets;
 	self.tableView.scrollIndicatorInsets = insets;
+	
+	self.tableView.rowHeight	= UITableViewAutomaticDimension;
+	self.tableView.estimatedRowHeight	= 65;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -44,12 +47,16 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+	ItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCell" forIndexPath:indexPath];
+	
+	// Update the labels for the new prefferd text size.
+	[cell updateLabels];
 	
     // Configure the cell...
 	Item *item = [self.itemStore.allItems objectAtIndex:indexPath.row];
-	cell.textLabel.text	= item.name;
-	cell.detailTextLabel.text	= [NSString stringWithFormat:@"%ld", (long)item.valueInDollars];
+	cell.nameLabel.text	= item.name;
+	cell.serialNumberLabel.text	= item.serialNumber;
+	cell.valueLabel.text	= [NSString stringWithFormat:@"%ld", (long)item.valueInDollars];
 	
     return cell;
 }
@@ -96,15 +103,21 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+	if ([segue.identifier isEqualToString:@"ShowItem"]) {
+		NSInteger row = [self.tableView indexPathForSelectedRow].row;
+		Item *item = self.itemStore.allItems[row];
+		DetailViewController *detailViewController	= segue.destinationViewController;
+		detailViewController.item	= item;
+	}
 }
-*/
+
 
 - (IBAction)toggleEditingMode:(id)sender {
 	UIButton *editButton = (UIButton *)sender;
