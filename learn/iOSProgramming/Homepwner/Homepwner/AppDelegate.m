@@ -18,8 +18,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	// Override point for customization after application launch.
 	ItemStore *itemStore	= [[ItemStore alloc] init];
-	
-	ItemsViewController *itemsController	= (ItemsViewController *)self.window.rootViewController;
+    UINavigationController *navController   = (UINavigationController *)self.window.rootViewController;
+    ItemsViewController *itemsController    = (ItemsViewController *)navController.topViewController;
 	itemsController.itemStore	= itemStore;
 	return YES;
 }

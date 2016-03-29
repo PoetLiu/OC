@@ -10,10 +10,10 @@
 #import "Item.h"
 
 @interface DetailViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UITextField *nameField;
-@property (strong, nonatomic) IBOutlet UITextField *serialNumberField;
-@property (strong, nonatomic) IBOutlet UITextField *valueField;
-@property (strong, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UITextField *nameField;
+@property (weak, nonatomic) IBOutlet UITextField *serialNumberField;
+@property (weak, nonatomic) IBOutlet UITextField *valueField;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @property (strong, nonatomic) Item *item;
 @end

@@ -23,6 +23,21 @@
 	self.dateLabel.text		= [[NSString alloc] initWithFormat:@"%@", self.item.dateCreated];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    // Save change to item
+    self.item.name  = self.nameField.text;
+    self.item.serialNumber  = self.serialNumberField.text;
+    NSInteger value = [self.valueField.text integerValue];
+    if (value > 0) {
+        self.item.valueInDollars    = value;
+    } else {
+        self.item.valueInDollars    = 0;
+    }
+
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
