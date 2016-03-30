@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Item : NSObject
+@interface Item : NSObject <NSCoding>
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *serialNumber;
 @property (strong, nonatomic) NSDate *dateCreated;
+@property (strong, nonatomic) NSString *itemKey;
 @property NSInteger valueInDollars;
 
 - (id) initWithName:(NSString *)name serialNumber:(NSString *)sn valueInDollars:(NSInteger)value;

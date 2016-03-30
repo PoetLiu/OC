@@ -14,18 +14,54 @@
 
 @implementation DetailViewController
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	[textField resignFirstResponder];
+	return true;
+}
+- (IBAction)backgroundTapped:(UITapGestureRecognizer *)sender {
+	[self.view endEditing:true];
+}
+- (IBAction)takePicture:(UIBarButtonItem *)sender {
+	UIImagePickerController	*imagePicker = [[UIImagePickerController alloc] init];
+	// If the device has a camera, take a picture; Otherwise,
+	// just pick from photo library
+	if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+		imagePicker.sourceType	= UIImagePickerControllerSourceTypeCamera;
+	} else {
+		imagePicker.sourceType	= UIImagePickerControllerSourceTypePhotoLibrary;
+	}
+	imagePicker.delegate	= self;
+	[self presentViewController:imagePicker animated:true completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+	// Get picked image from info dictionary.
+	UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+	[self.imageStore setImage:image forKey:self.item.itemKey];
+	// Put that image on the screen in the image view.
+	self.imageView.image	= image;
+	
+	// Take image picker off the screen
+	// you must call this dismiss method.
+	[self dismissViewControllerAnimated:true completion:nil];
+}
+
 - (void) viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	
+	self.navigationItem.title	= self.item.name;
 	self.nameField.text 	= self.item.name;
 	self.serialNumberField.text	= self.item.serialNumber;
 	self.valueField.text	= [[NSString alloc] initWithFormat:@"%ld", (long)self.item.valueInDollars];
 	self.dateLabel.text		= [[NSString alloc] initWithFormat:@"%@", self.item.dateCreated];
+	self.imageView.image	= [self.imageStore imageForKey:self.item.itemKey];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
+	
+	// Clear first responder
+	[self.view endEditing:true];
+	
     // Save change to item
     self.item.name  = self.nameField.text;
     self.item.serialNumber  = self.serialNumberField.text;

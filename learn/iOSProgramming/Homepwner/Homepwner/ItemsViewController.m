@@ -16,18 +16,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	CGFloat statusBarHeight	= [[UIApplication sharedApplication] statusBarFrame].size.height;
-	UIEdgeInsets insets = UIEdgeInsetsMake(statusBarHeight, 0, 0, 0);
-	self.tableView.contentInset	= insets;
-	self.tableView.scrollIndicatorInsets = insets;
-	
 	self.tableView.rowHeight	= UITableViewAutomaticDimension;
 	self.tableView.estimatedRowHeight	= 65;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -86,6 +81,7 @@
 		UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
 			// Delete the row from the data source
 			[self.itemStore removeItem:deleteItem];
+			[self.imageStore deleteImageForKey:deleteItem.itemKey];
 			[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 		}];
 		[ac addAction:deleteAction];
@@ -120,18 +116,7 @@
 		Item *item = self.itemStore.allItems[row];
 		DetailViewController *detailViewController	= segue.destinationViewController;
 		detailViewController.item	= item;
-	}
-}
-
-
-- (IBAction)toggleEditingMode:(id)sender {
-	UIButton *editButton = (UIButton *)sender;
-	if (self.editing) {
-		[editButton setTitle:@"Edit" forState:UIControlStateNormal];
-		[self setEditing:false animated:true];
-	} else {
-		[editButton setTitle:@"Done" forState:UIControlStateNormal];
-		[self setEditing:true animated:true];
+		detailViewController.imageStore	= self.imageStore;
 	}
 }
 

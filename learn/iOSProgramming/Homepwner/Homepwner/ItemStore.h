@@ -11,7 +11,9 @@
 
 @interface ItemStore : NSObject
 @property NSMutableArray *allItems;
+@property NSURL *itemArchiveURL;
 -(Item*) createItem;
 -(void)removeItem:(Item *)item;
 -(void)moveItemAtIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex;
+-(BOOL)saveChanges;
 @end

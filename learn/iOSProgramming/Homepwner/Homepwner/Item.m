@@ -15,6 +15,7 @@
 		self.valueInDollars	= value;
 		self.serialNumber	= sn;
 		self.dateCreated	= [NSDate date];
+		self.itemKey		= [[NSUUID UUID] UUIDString];
 	}
 	return (self);
 }
@@ -39,5 +40,27 @@
 		return [self initWithName:@"" serialNumber:nil valueInDollars:0];
 	}
 
+}
+
+- (id)initWithCoder:(NSCoder *)coder
+{
+	if (self = [super init]) {
+		self.name	= [coder decodeObjectForKey:@"name"];
+		self.dateCreated	= [coder decodeObjectForKey:@"dateCreated"];
+		self.itemKey		= [coder decodeObjectForKey:@"itemKey"];
+		self.serialNumber	= [coder decodeObjectForKey:@"serialNumber"];
+		self.valueInDollars	= [coder decodeIntegerForKey:@"valueInDollars"];
+	}
+
+	return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder
+{
+	[coder encodeObject:self.name forKey:@"name"];
+	[coder encodeObject:self.dateCreated forKey:@"dateCreated"];
+	[coder encodeObject:self.itemKey forKey:@"itemKey"];
+	[coder encodeObject:self.serialNumber forKey:@"serialNumber"];
+	[coder encodeInteger:self.valueInDollars forKey:@"valueInDollars"];
 }
 @end

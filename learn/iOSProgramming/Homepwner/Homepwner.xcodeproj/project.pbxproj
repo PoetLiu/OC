@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		060488A11CAA1D9000CF0132 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 060488A01CAA1D9000CF0132 /* DetailViewController.m */; };
+		060488A41CABA2A400CF0132 /* ImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 060488A31CABA2A400CF0132 /* ImageStore.m */; };
 		06421CC01CA4E0500047AFF3 /* ItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 06421CBF1CA4E0500047AFF3 /* ItemStore.m */; };
 		06421CC31CA540D70047AFF3 /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06421CC21CA540D70047AFF3 /* ItemCell.m */; };
 		066765221CA3E6720046B2A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 066765211CA3E6720046B2A0 /* main.m */; };
@@ -22,6 +23,8 @@
 /* Begin PBXFileReference section */
 		0604889F1CAA1D9000CF0132 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		060488A01CAA1D9000CF0132 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		060488A21CABA2A400CF0132 /* ImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageStore.h; sourceTree = "<group>"; };
+		060488A31CABA2A400CF0132 /* ImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageStore.m; sourceTree = "<group>"; };
 		06421CBE1CA4E0500047AFF3 /* ItemStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemStore.h; sourceTree = "<group>"; };
 		06421CBF1CA4E0500047AFF3 /* ItemStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemStore.m; sourceTree = "<group>"; };
 		06421CC11CA540D70047AFF3 /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
@@ -78,6 +81,8 @@
 				0667653A1CA3EA430046B2A0 /* ItemsViewController.m */,
 				0604889F1CAA1D9000CF0132 /* DetailViewController.h */,
 				060488A01CAA1D9000CF0132 /* DetailViewController.m */,
+				060488A21CABA2A400CF0132 /* ImageStore.h */,
+				060488A31CABA2A400CF0132 /* ImageStore.m */,
 				06421CC11CA540D70047AFF3 /* ItemCell.h */,
 				06421CC21CA540D70047AFF3 /* ItemCell.m */,
 				0667653D1CA3EC170046B2A0 /* Item.h */,
@@ -177,6 +182,7 @@
 				066765221CA3E6720046B2A0 /* main.m in Sources */,
 				06421CC01CA4E0500047AFF3 /* ItemStore.m in Sources */,
 				060488A11CAA1D9000CF0132 /* DetailViewController.m in Sources */,
+				060488A41CABA2A400CF0132 /* ImageStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
