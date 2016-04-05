@@ -48,11 +48,25 @@
 -(void)moveLine:(UIPanGestureRecognizer *)gestureRecognizer {
 	NSLog(@"Recognized a pan");
 	NSInteger index = self.seletedIndex;
+	if ([[UIMenuController sharedMenuController] isMenuVisible]) {
+		return;
+	}
 	if (index != -1) {
 		if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
 			CGPoint translation = [gestureRecognizer translationInView:self];
+			CGPoint begin	= [self.finishedLines objectAtIndex:index].begin;
+			CGPoint end = [self.finishedLines objectAtIndex:index].end;
+			begin.x	+= translation.x;
+			begin.y += translation.y;
+			end.x	+= translation.x;
+			end.y	+= translation.y;
+			[self.finishedLines objectAtIndex:index].begin	= begin;
+			[self.finishedLines objectAtIndex:index].end	= end;
+			[gestureRecognizer setTranslation:CGPointZero inView:self];
+			[self setNeedsDisplay];
 		}
 	}
+	return;
 }
 
 -(void)longPress:(UIGestureRecognizer *)gestureRecognizer {
@@ -150,6 +164,9 @@
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+	NSLog(@"Touch begin");
+	self.seletedIndex	= -1;
+	[[UIMenuController sharedMenuController] setMenuVisible:NO animated:YES];
 	for (UITouch *touch in [touches allObjects]) {
 		CGPoint location = [touch locationInView:self];
 		Line *newLine	= [[Line alloc] initWithBegin:location end:location];
@@ -161,7 +178,7 @@
 }
 
 -(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-	
+	NSLog(@"Touch moved");
 	for (UITouch *touch in touches) {
 		NSValue *key	= [NSValue valueWithNonretainedObject:touch];
 		((Line *) self.currentLines[key]).end	= [touch locationInView:self];
@@ -170,6 +187,7 @@
 }
 
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+	NSLog(@"Touch end");
 	for (UITouch *touch in touches) {
 		NSValue *key	= [NSValue valueWithNonretainedObject:touch];
 		CGPoint location	= [touch locationInView:self];
