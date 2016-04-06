@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "PhotoStore.h"
+#import "PhotoDataSource.h"
+#import "PhotoCollectionViewCell.h"
 
-@interface PhotosViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@interface PhotosViewController : UIViewController <UICollectionViewDelegate>
 @property (strong, nonatomic) PhotoStore *store;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) PhotoDataSource *photoDataSource;
 @end

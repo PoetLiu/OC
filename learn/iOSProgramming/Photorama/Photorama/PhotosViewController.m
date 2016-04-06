@@ -14,23 +14,37 @@
  */
 -(void)viewDidLoad {
 	[super viewDidLoad];
+    self.photoDataSource    = [[PhotoDataSource alloc] init];
+    self.collectionView.dataSource  = self.photoDataSource;
+    self.collectionView.delegate    = self;
 	[self.store fetchRecentPhotos:^(NSMutableArray *photos) {
-		if (photos) {
-			NSLog(@"Successfully found %lu recent photos", (unsigned long)photos.count);
-			Photo *photo = [photos firstObject];
-			[self.store fetchImageForPhoto:photo completion:^(UIImage *image) {
-				if (image) {
-					[[NSOperationQueue mainQueue] addOperationWithBlock:^{
-						self.imageView.image	= image;
-					}];
-				} else {
-					NSLog(@"Error downloading image");
-				}
-			}];
-		} else {
-			NSLog(@"Error fetching recent Photos");
-		}
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            if (photos) {
+                self.photoDataSource.photos = photos;
+                NSLog(@"Successfully found %lu recent photos", (unsigned long)photos.count);
+            } else {
+                [self.photoDataSource.photos removeAllObjects];
+                NSLog(@"Error fetching recent Photos");
+            }
+            [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
+        }];
 	}];
-	NSLog(@"done");
+}
+
+-(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    Photo *photo = self.photoDataSource.photos[indexPath.row];
+    [self.store fetchImageForPhoto:photo completion:^(UIImage *image) {
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            // The index path for the photo might have changed between the
+            // time the request started and finished, so find the most recent
+            // index path
+            NSInteger photoIndex = [self.photoDataSource.photos indexOfObject:photo];
+            NSIndexPath *photoIndexPath = [NSIndexPath indexPathForRow:photoIndex inSection:0];
+            
+            // when the request finishes, only update the cell if it's still visible
+            PhotoCollectionViewCell *cell = (PhotoCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:photoIndexPath];
+            [cell updateWithImage:photo.image];
+        }];
+    }];
 }
 @end

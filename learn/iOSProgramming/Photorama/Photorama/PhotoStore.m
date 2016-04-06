@@ -55,9 +55,13 @@
 }
 
 -(void) fetchImageForPhoto:(Photo *)photo completion:(void (^)(UIImage *image))completion {
+    if (photo.image) {
+        completion(photo.image);
+        return;
+    }
+    
 	NSURLRequest *request = [NSURLRequest requestWithURL:photo.remoteURL];
 	NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request  completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-		NSLog(@"%@", response);
 		if (error) {
 			NSLog(@"download image faild:%@", error);
 			return;
