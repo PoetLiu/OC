@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PhotoStore.h"
 
 @interface PhotosViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
-
+@property (strong, nonatomic) PhotoStore *store;
 @end

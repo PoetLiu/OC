@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PhotosViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

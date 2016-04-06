@@ -14,9 +14,11 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	// Override point for customization after application launch.
+	UINavigationController *rootViewController = (UINavigationController *)self.window.rootViewController;
+	PhotosViewController *photosViewController = (PhotosViewController *)rootViewController.topViewController;
+	photosViewController.store	= [[PhotoStore alloc] init];
 	return YES;
 }
 
