@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1Za-Ia-wJs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1Za-Ia-wJs">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--Photorama-->
@@ -55,6 +55,7 @@
                                         <connections>
                                             <outlet property="imageView" destination="fcg-OC-CZa" id="Ec4-bf-KNP"/>
                                             <outlet property="spinner" destination="0Wd-pq-JYy" id="1wj-HY-u6G"/>
+                                            <segue destination="MA1-BY-uND" kind="show" identifier="ShowPhoto" id="Wuw-pd-T19"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -76,6 +77,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1064" y="1065"/>
+        </scene>
+        <!--Photo Info View Controller-->
+        <scene sceneID="LnX-Ka-DW9">
+            <objects>
+                <viewController id="MA1-BY-uND" customClass="PhotoInfoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lek-Xa-ihj"/>
+                        <viewControllerLayoutGuide type="bottom" id="X4X-aa-CFj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9sS-Ca-esM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Jt-j4-pMA">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0Jt-j4-pMA" firstAttribute="top" secondItem="9sS-Ca-esM" secondAttribute="top" id="QYo-U3-OkF"/>
+                            <constraint firstAttribute="bottom" secondItem="0Jt-j4-pMA" secondAttribute="bottom" id="afC-qX-WT5"/>
+                            <constraint firstItem="0Jt-j4-pMA" firstAttribute="leading" secondItem="9sS-Ca-esM" secondAttribute="leading" id="ckV-8I-mBZ"/>
+                            <constraint firstAttribute="trailing" secondItem="0Jt-j4-pMA" secondAttribute="trailing" id="soo-VQ-Bgs"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="0Jt-j4-pMA" id="lH0-rf-8Iw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CtO-DN-XA3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1715" y="1065"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ajp-70-WuB">

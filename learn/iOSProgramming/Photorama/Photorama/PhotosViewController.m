@@ -47,4 +47,14 @@
         }];
     }];
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if ([segue.identifier isEqualToString:@"ShowPhoto"]) {
+		NSIndexPath *selectedIndexPath = [self.collectionView.indexPathsForSelectedItems firstObject];
+		Photo *photo = self.photoDataSource.photos[selectedIndexPath.row];
+		PhotoInfoViewController *destinationVC = segue.destinationViewController;
+		destinationVC.photo	= photo;
+		destinationVC.store	= self.store;
+	}
+}
 @end

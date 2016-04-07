@@ -13,6 +13,7 @@
 	if (self = [super init]) {
 		self.session	= [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:nil];
 		self.flickrAPI	= [[FlickrAPI alloc] init];
+		self.coreDataStack	= [[CoreDataStack alloc] initWithModelName:@"Photorama"];
 	}
 	return self;
 }
@@ -33,8 +34,10 @@
 }
 
 /*
- * 由于69.147.76.173服务器SSL(https)通信时，无法验证证书有效性，所以必须手动在这里放行
-   但如果实现了这个功能，那么所有https请求，都需要自己手动验证(比如这里的farm2.staticflickr.com)。否则不需要。
+ * 由于69.147.76.173服务器SSL(https)通信时，无法验证证书有效性, 提示：
+ 	Error Domain=NSURLErrorDomain Code=-1202 "The certificate for this server is
+   invalid. You might be connecting to a server that is pretending to be “69.147.76.173” which could put your confidential information at risk."所
+ 以必须手动在这里放行，但如果实现了这个功能，那么所有https请求，都需要自己手动验证(比如这里的farm2.staticflickr.com)。否则不需要。
  */
 - (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *))completionHandler{
 	if([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]){
@@ -51,7 +54,7 @@
 	if (!data) {
 		return nil;
 	}
-	return [self.flickrAPI photosFromJSONData:data];
+	return [self.flickrAPI photosFromJSONData:data inContext:self.coreDataStack.mainQueueContext];
 }
 
 -(void) fetchImageForPhoto:(Photo *)photo completion:(void (^)(UIImage *image))completion {

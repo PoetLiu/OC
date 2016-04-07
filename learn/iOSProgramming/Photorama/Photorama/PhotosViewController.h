@@ -10,6 +10,7 @@
 #import "PhotoStore.h"
 #import "PhotoDataSource.h"
 #import "PhotoCollectionViewCell.h"
+#import "PhotoInfoViewController.h"
 
 @interface PhotosViewController : UIViewController <UICollectionViewDelegate>
 @property (strong, nonatomic) PhotoStore *store;

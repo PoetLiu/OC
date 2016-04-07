@@ -53,7 +53,7 @@
 	return [components URL];
 }
 
-- (NSMutableArray *) photosFromJSONData:(NSData *)data {
+- (NSMutableArray *) photosFromJSONData:(NSData *)data inContext:(NSManagedObjectContext *)context {
 	NSError *err;
 	id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&err];
 	if (err) {
@@ -71,7 +71,7 @@
 
 	NSMutableArray *finalPhotos = [[NSMutableArray alloc] init];
 	for (NSDictionary *photoJSON in photoArray) {
-		Photo *photo = [self photoFromJSONObject:photoJSON];
+		Photo *photo = [self photoFromJSONObject:photoJSON inContext:context];
 		if (photo) {
 			[finalPhotos addObject:photo];
 		}
@@ -84,7 +84,7 @@
 	return finalPhotos;
 }
 
-- (Photo *) photoFromJSONObject:(NSDictionary *)json {
+- (Photo *) photoFromJSONObject:(NSDictionary *)json inContext:(NSManagedObjectContext *)context {
 	NSString *photoID = [json objectForKey:@"id"];
 	NSString *title	= [json objectForKey:@"title"];
 	NSString *dateString = [json objectForKey:@"datetaken"];
@@ -96,7 +96,16 @@
 		NSLog(@"Don't have enough information to construct a Photo");
 		return nil;
 	}
-	return [[Photo alloc] initWithTitle:title photoID:photoID remoteURL:url dateTaken:dateTaken];
+	
+	__block Photo *photo;
+	[context performBlockAndWait:^{
+		photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:context];
+		photo.title	= title;
+		photo.photoID	= photoID;
+		photo.remoteURL	= url;
+		photo.dateTaken	= dateTaken;
+	}];
+	return photo;
 }
 
 @end
