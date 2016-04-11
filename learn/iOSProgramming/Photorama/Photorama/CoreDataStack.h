@@ -16,4 +16,5 @@
 @property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (strong, nonatomic) NSManagedObjectContext *mainQueueContext;
 -(instancetype)initWithModelName:(NSString *)modelName;
+-(void) saveChanges;
 @end

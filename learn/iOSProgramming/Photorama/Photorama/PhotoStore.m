@@ -18,6 +18,23 @@
 	return self;
 }
 
+-(NSArray *)fetchMainQueuePhotos:(NSPredicate *)predicate sortDescriptors:(NSArray<NSSortDescriptor *>*)sortDescriptors {
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Photo"];
+	fetchRequest.sortDescriptors	= sortDescriptors;
+	fetchRequest.predicate			= predicate;
+	
+	NSManagedObjectContext *mainQueueContext	= self.coreDataStack.mainQueueContext;
+	__block NSArray<Photo *> *mainQueuePhotos = nil;
+	__block NSError *error = nil;
+	[mainQueueContext performBlockAndWait:^{
+		mainQueuePhotos = [mainQueueContext executeFetchRequest:fetchRequest error:&error];
+	}];
+	if (error) {
+		NSLog(@"%@", error);
+	}
+	return mainQueuePhotos;
+}
+
 - (void) fetchRecentPhotos:(void (^)(NSMutableArray *photos))completion {
 	NSURL *url = [self.flickrAPI recentPhotosURL];
 	NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -28,6 +45,9 @@
 			return;
 		}
 		NSMutableArray *result = [self processRecentPhotosRequest:data error:nil];
+		if (result) {
+			[self.coreDataStack saveChanges];
+		}
 		completion(result);
 	}];
 	[task resume];
