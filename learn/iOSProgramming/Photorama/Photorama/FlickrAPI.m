@@ -97,6 +97,17 @@
 		return nil;
 	}
 	
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Photo"];
+	NSPredicate *predicate	= [NSPredicate predicateWithFormat:@"photoID == %@", photoID];
+	fetchRequest.predicate	= predicate;
+	__block	NSArray *fetchedPhotos;
+	[context performBlockAndWait:^{
+		fetchedPhotos	= [context executeFetchRequest:fetchRequest error:nil];
+	}];
+	if (fetchedPhotos.count > 0) {
+		return [fetchedPhotos firstObject];
+	}
+	
 	__block Photo *photo;
 	[context performBlockAndWait:^{
 		photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:context];

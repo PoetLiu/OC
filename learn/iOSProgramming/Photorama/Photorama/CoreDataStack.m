@@ -14,7 +14,7 @@
 		self.managedObjectModelName	= modelName;
 		NSURL *modelURL = [[NSBundle mainBundle] URLForResource:self.managedObjectModelName withExtension:@"momd"];
 		self.managedObjectModel	= [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-		self.applicationDocumentDirectory = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentationDirectory inDomains:NSUserDomainMask] firstObject];
+		self.applicationDocumentDirectory = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] firstObject];
 		NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
 		NSString *pathComponent = [self.managedObjectModelName stringByAppendingPathExtension:@"sqlite"];
 		NSURL *url = [self.applicationDocumentDirectory URLByAppendingPathComponent:pathComponent];

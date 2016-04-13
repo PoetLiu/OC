@@ -11,6 +11,7 @@
 @implementation PhotoInfoViewController
 -(void)viewDidLoad {
 	[super viewDidLoad];
+	
 	[self.store fetchImageForPhoto:self.photo completion:^(UIImage *image) {
 		if (image) {
 			[[NSOperationQueue mainQueue] addOperationWithBlock:^{

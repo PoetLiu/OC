@@ -9,6 +9,7 @@
 #import "PhotoStore.h"
 
 @implementation PhotoStore
+
 -(instancetype)init {
 	if (self = [super init]) {
 		self.session	= [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:nil];
@@ -44,10 +45,24 @@
 			NSLog(@"Error fetching recent photos:%@", error);
 			return;
 		}
-		NSMutableArray *result = [self processRecentPhotosRequest:data error:nil];
+		__block NSMutableArray *result = [self processRecentPhotosRequest:data error:nil];
 		if (result) {
 			[self.coreDataStack saveChanges];
 		}
+		[self.coreDataStack.mainQueueContext performBlockAndWait:^{
+			[self.coreDataStack.mainQueueContext obtainPermanentIDsForObjects:result error:nil];
+			
+			NSArray *objectIDs = [result valueForKeyPath:@"objectID"];
+			NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self IN %@", objectIDs];
+			NSSortDescriptor *sortByDateTaken = [[NSSortDescriptor alloc] initWithKey:@"dateTaken" ascending:YES];
+			[self.coreDataStack saveChanges];
+			NSArray *mainQueuePhotos = [self fetchMainQueuePhotos:predicate sortDescriptors:@[sortByDateTaken]];
+			if (mainQueuePhotos) {
+    			result	= [NSMutableArray arrayWithArray:mainQueuePhotos];
+			} else {
+				NSLog(@"fetchMainQueuePhotos faild.");
+			}
+		}];
 		completion(result);
 	}];
 	[task resume];

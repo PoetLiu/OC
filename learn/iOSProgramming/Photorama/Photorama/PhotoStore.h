@@ -17,4 +17,5 @@
 @property CoreDataStack *coreDataStack;
 -(void) fetchRecentPhotos:(void (^)(NSMutableArray *photos))completion;
 -(void) fetchImageForPhoto:(Photo *)photo completion:(void (^)(UIImage *image))completion;
+-(NSArray *)fetchMainQueuePhotos:(NSPredicate *)predicate sortDescriptors:(NSArray<NSSortDescriptor *>*)sortDescriptors;
 @end

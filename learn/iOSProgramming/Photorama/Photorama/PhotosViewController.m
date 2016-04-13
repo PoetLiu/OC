@@ -18,16 +18,12 @@
     self.collectionView.dataSource  = self.photoDataSource;
     self.collectionView.delegate    = self;
 	[self.store fetchRecentPhotos:^(NSMutableArray *photos) {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            if (photos) {
-                self.photoDataSource.photos = photos;
-                NSLog(@"Successfully found %lu recent photos", (unsigned long)photos.count);
-            } else {
-                [self.photoDataSource.photos removeAllObjects];
-                NSLog(@"Error fetching recent Photos");
-            }
-            [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
-        }];
+		NSSortDescriptor *sortByDateTaken = [[NSSortDescriptor alloc] initWithKey:@"dateTaken" ascending:YES];
+		NSArray *allPhotos = [self.store fetchMainQueuePhotos:nil sortDescriptors:@[sortByDateTaken]];
+		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+			self.photoDataSource.photos	= [NSMutableArray arrayWithArray:allPhotos];
+			[self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
+		}];
 	}];
 }
 
