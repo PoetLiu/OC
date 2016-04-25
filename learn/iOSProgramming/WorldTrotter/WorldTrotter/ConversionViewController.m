@@ -24,28 +24,25 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (UIColor *)getUIColorByOrder {
-	static	NSInteger	id = 0;
-	switch (id++) {
-		case 0:
-			return [UIColor blueColor];
-		case 1:
-			return [UIColor whiteColor];
-		case 2:
-			return [UIColor grayColor];
-		case 3:
-			return [UIColor redColor];
-		case 4:
-			return [UIColor greenColor];
-		default:
-			id	= 0;
-			return [self getUIColorByOrder];
+- (NSDateComponents *)getNowDateComponents {
+	NSDate *now	= [NSDate date];
+	NSCalendar *current = [NSCalendar currentCalendar];
+	NSDateComponents *nowDateComponents = [current components:(NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond) fromDate:now];
+	NSLog(@"%ld:%ld:%ld", (long)nowDateComponents.hour, (long)nowDateComponents.minute, (long)nowDateComponents.second);
+	return nowDateComponents;
+	
+}
+
+- (UIColor *)getBackgroundColor {
+	if ([self getNowDateComponents].hour >= 18) {
+		return [UIColor darkGrayColor];
+	} else {
+		return [UIColor whiteColor];
 	}
-	return nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	[self.view setBackgroundColor:[self getUIColorByOrder]];
+	[self.view setBackgroundColor:[self getBackgroundColor]];
 }
 
 /*
@@ -75,9 +72,12 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
 	NSLocale *currentLocale	= [NSLocale currentLocale];
 	NSString *decimalSeparator = [currentLocale objectForKey:NSLocaleDecimalSeparator];
-	NSLog(@"%@", decimalSeparator);
+	NSCharacterSet *characterSet = [NSCharacterSet letterCharacterSet];
+	// NSLog(@"%@", decimalSeparator);
 	// Avoid input "." more than once.
 	if ([string rangeOfString:decimalSeparator].length && [textField.text rangeOfString:decimalSeparator].length) {
+		return NO;
+	} else if ([string rangeOfCharacterFromSet:characterSet].length) {
 		return NO;
 	} else {
 		return YES;
