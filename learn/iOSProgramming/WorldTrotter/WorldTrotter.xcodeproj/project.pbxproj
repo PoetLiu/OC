@@ -23,11 +23,11 @@
 /* Begin PBXFileReference section */
 		065A1BB41CA2801600D570BF /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		065A1BB51CA2801600D570BF /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
-		066765101CA3B6470046B2A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		066765121CA3B6560046B2A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		066765131CA3B6570046B2A0 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		067F596C1CA22B8100CF2581 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		067F596D1CA22B8200CF2581 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		06B8E24C1CCF896200D76911 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		06ECF8F71CA18AC600527298 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		06F5844F1CA38F9C000AB9E1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		06F584501CA39022000AB9E1 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
@@ -191,9 +191,9 @@
 		066765111CA3B6470046B2A0 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				066765101CA3B6470046B2A0 /* Base */,
 				066765121CA3B6560046B2A0 /* en */,
 				066765131CA3B6570046B2A0 /* es */,
+				06B8E24C1CCF896200D76911 /* Base */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
