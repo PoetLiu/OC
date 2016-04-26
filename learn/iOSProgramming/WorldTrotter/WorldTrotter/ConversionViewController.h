@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ConversionViewController<UITextFieldDelegate> : UIViewController
+@interface ConversionViewController : UIViewController <UITextFieldDelegate>
 
 - (IBAction)fahrenheitFieldEditingChanged:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *textField;

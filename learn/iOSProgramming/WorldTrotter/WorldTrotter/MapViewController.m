@@ -46,7 +46,7 @@
 	location.contentMode = UIViewContentModeScaleToFill;
 	[location sizeToFit];
 	[location setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-	[location addTarget:self action:@selector(currentLocation) forControlEvents:UIControlEventTouchUpInside];
+	[location addTarget:self action:@selector(currentLocationShow) forControlEvents:UIControlEventTouchUpInside];
 	NSLog(@"x:%f y:%f width:%f heigth:%f", location.frame.origin.x, location.frame.origin.y, location.frame.size.height, location.frame.size.width);
 	self.locationButton	= location;
 	[self.view addSubview:location];
@@ -66,7 +66,20 @@
 	}
 }
 
-- (void)currentLocation {
+- (void)beginShowUserLocation {
+    self.mapView.showsUserLocation  = YES;
+    self.locationButton.hidden      = YES;
+    [self activityIndicatorSetAnimate:YES];
+    
+}
+
+- (void)endShowUserLocation {
+    self.mapView.showsUserLocation  = NO;
+    self.locationButton.hidden      = NO;
+    [self activityIndicatorSetAnimate:NO];
+}
+
+- (void)currentLocationShow {
 	if (self.locationManager == nil) {
 		self.locationManager = [[CLLocationManager alloc] init];
 		self.locationManager.delegate	= self;
@@ -75,8 +88,8 @@
 	NSLog(@"%d", currentStatus);
 	if (currentStatus == kCLAuthorizationStatusNotDetermined || currentStatus == kCLAuthorizationStatusDenied) {
 		[self.locationManager requestAlwaysAuthorization];
-	} else {
-		self.mapView.showsUserLocation = YES;
+    } else {
+        [self beginShowUserLocation];
 	}
 }
 
@@ -107,11 +120,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma MKMapViewDelegate
+#pragma mark - MKMapViewDelegate
 -(void)mapViewWillStartLocatingUser:(MKMapView *)mapView {
 	NSLog(@"will start locating user");
-	[self activityIndicatorSetAnimate:YES];
-	self.locationButton.hidden = YES;
 }
 
 -(void)mapViewDidStopLocatingUser:(MKMapView *)mapView {
@@ -120,21 +131,20 @@
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
 	NSLog(@"user location already updated.");
-	[self activityIndicatorSetAnimate:NO];
-	self.locationButton.hidden = NO;
+    
+    [self endShowUserLocation];
 }
 
 -(void)mapView:(MKMapView *)mapView didFailToLocateUserWithError:(NSError *)error {
 	NSLog(@"faild to locate user err:%@", error);
-	[self activityIndicatorSetAnimate:NO];
-	self.locationButton.hidden = NO;
+    [self endShowUserLocation];
 }
 
-#pragma CLLocationManager delegate
+#pragma mark - CLLocationManager delegate
 -(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
 	NSLog(@"got authorization status change, new:%d", status);
 	if (status == kCLAuthorizationStatusAuthorizedAlways) {
-		self.mapView.showsUserLocation	= YES;
+        [self beginShowUserLocation];
 	}
 }
 /*
