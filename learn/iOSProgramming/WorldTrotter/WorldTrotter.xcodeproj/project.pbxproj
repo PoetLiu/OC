@@ -17,6 +17,7 @@
 		06FC47681C9FE9BE001BD2A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06FC47671C9FE9BE001BD2A5 /* Assets.xcassets */; };
 		06FC476B1C9FE9BE001BD2A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06FC47691C9FE9BE001BD2A5 /* LaunchScreen.storyboard */; };
 		06FC47741CA13466001BD2A5 /* ConversionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FC47731CA13466001BD2A5 /* ConversionViewController.m */; };
+		06FCAFE61CCF53CD00CE13C2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06FCAFE51CCF53CD00CE13C2 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		06FC476C1C9FE9BE001BD2A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06FC47721CA13466001BD2A5 /* ConversionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversionViewController.h; sourceTree = "<group>"; };
 		06FC47731CA13466001BD2A5 /* ConversionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversionViewController.m; sourceTree = "<group>"; };
+		06FCAFE51CCF53CD00CE13C2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06FCAFE61CCF53CD00CE13C2 /* CoreLocation.framework in Frameworks */,
 				06ECF8F81CA18AC600527298 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,6 +60,7 @@
 		06FC474F1C9FE9BE001BD2A5 = {
 			isa = PBXGroup;
 			children = (
+				06FCAFE51CCF53CD00CE13C2 /* CoreLocation.framework */,
 				06ECF8F71CA18AC600527298 /* MapKit.framework */,
 				06FC475A1C9FE9BE001BD2A5 /* WorldTrotter */,
 				06FC47591C9FE9BE001BD2A5 /* Products */,

@@ -10,18 +10,21 @@
 
 @interface MapViewController ()
 @property (strong, nonatomic) MKMapView *mapView;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
+@property (strong, nonatomic) UIButton *locationButton;
 @end
 
 @implementation MapViewController
 
 - (void)loadView {
 	self.mapView	= [[MKMapView alloc] init];
+	self.mapView.delegate	= self;
 	[self setView:self.mapView];
 	
 	NSString *standardString	= NSLocalizedString(@"Standard", @"Standard map view");
 	NSString *satelliteString	= NSLocalizedString(@"Satellite", @"Satellite map view");
 	NSString *hybridString		= NSLocalizedString(@"Hybrid", @"Hybrid map view");
-	
 	UISegmentedControl *segmentedControl	= [[UISegmentedControl alloc] initWithItems:@[standardString, satelliteString, hybridString]];
 	segmentedControl.backgroundColor	= [[UIColor whiteColor] colorWithAlphaComponent:0.5];
 	segmentedControl.selectedSegmentIndex	= 0;
@@ -30,14 +33,51 @@
 	[self.view addSubview:segmentedControl];
 	
 	NSLayoutConstraint *topConstraint	= [segmentedControl.topAnchor constraintEqualToAnchor:[self.topLayoutGuide bottomAnchor] constant:8];
-	
 	UILayoutGuide *magins	= self.view.layoutMarginsGuide;
 	NSLayoutConstraint *leadingConstraint = [segmentedControl.leadingAnchor constraintEqualToAnchor:magins.leadingAnchor];
 	NSLayoutConstraint *traillingConstraint	= [segmentedControl.trailingAnchor constraintEqualToAnchor:magins.trailingAnchor];
-	
 	topConstraint.active	= true;
 	leadingConstraint.active	= true;
 	traillingConstraint.active	= true;
+	
+	UIButton *location = [UIButton buttonWithType:UIButtonTypeSystem];
+	[location setFrame:CGRectMake(0, 100, 0, 0)];
+	[location setTitle:@"Location" forState:UIControlStateNormal];
+	location.contentMode = UIViewContentModeScaleToFill;
+	[location sizeToFit];
+	[location setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+	[location addTarget:self action:@selector(currentLocation) forControlEvents:UIControlEventTouchUpInside];
+	NSLog(@"x:%f y:%f width:%f heigth:%f", location.frame.origin.x, location.frame.origin.y, location.frame.size.height, location.frame.size.width);
+	self.locationButton	= location;
+	[self.view addSubview:location];
+}
+
+- (void)activityIndicatorSetAnimate:(BOOL)animate {
+	if (self.activityIndicator == nil) {
+		self.activityIndicator	= [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+		self.activityIndicator.hidesWhenStopped	= YES;
+		[self.view addSubview:self.activityIndicator];
+		self.activityIndicator.center	= self.locationButton.center;
+	}
+	if (animate) {
+		[self.activityIndicator startAnimating];
+	} else {
+		[self.activityIndicator stopAnimating];
+	}
+}
+
+- (void)currentLocation {
+	if (self.locationManager == nil) {
+		self.locationManager = [[CLLocationManager alloc] init];
+		self.locationManager.delegate	= self;
+	}
+	CLAuthorizationStatus currentStatus = [CLLocationManager authorizationStatus];
+	NSLog(@"%d", currentStatus);
+	if (currentStatus == kCLAuthorizationStatusNotDetermined || currentStatus == kCLAuthorizationStatusDenied) {
+		[self.locationManager requestAlwaysAuthorization];
+	} else {
+		self.mapView.showsUserLocation = YES;
+	}
 }
 
 - (void)mapTypeChanged:(UISegmentedControl *)segControl {
@@ -67,6 +107,36 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma MKMapViewDelegate
+-(void)mapViewWillStartLocatingUser:(MKMapView *)mapView {
+	NSLog(@"will start locating user");
+	[self activityIndicatorSetAnimate:YES];
+	self.locationButton.hidden = YES;
+}
+
+-(void)mapViewDidStopLocatingUser:(MKMapView *)mapView {
+	NSLog(@"Locating user stoped");
+}
+
+-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+	NSLog(@"user location already updated.");
+	[self activityIndicatorSetAnimate:NO];
+	self.locationButton.hidden = NO;
+}
+
+-(void)mapView:(MKMapView *)mapView didFailToLocateUserWithError:(NSError *)error {
+	NSLog(@"faild to locate user err:%@", error);
+	[self activityIndicatorSetAnimate:NO];
+	self.locationButton.hidden = NO;
+}
+
+#pragma CLLocationManager delegate
+-(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+	NSLog(@"got authorization status change, new:%d", status);
+	if (status == kCLAuthorizationStatusAuthorizedAlways) {
+		self.mapView.showsUserLocation	= YES;
+	}
+}
 /*
 #pragma mark - Navigation
 
