@@ -73,10 +73,15 @@
     
 }
 
-- (void)endShowUserLocation {
+- (void)endShowUserLocation:(MKUserLocation *)userLocation {
     self.mapView.showsUserLocation  = NO;
     self.locationButton.hidden      = NO;
     [self activityIndicatorSetAnimate:NO];
+	if (userLocation) {
+		if ([self.mapView isUserLocationVisible] != YES) {
+			[self.mapView showAnnotations:@[userLocation] animated:YES];
+		}
+	}
 }
 
 - (void)currentLocationShow {
@@ -131,13 +136,12 @@
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
 	NSLog(@"user location already updated.");
-    
-    [self endShowUserLocation];
+	[self endShowUserLocation:userLocation];
 }
 
 -(void)mapView:(MKMapView *)mapView didFailToLocateUserWithError:(NSError *)error {
 	NSLog(@"faild to locate user err:%@", error);
-    [self endShowUserLocation];
+	[self endShowUserLocation:nil];
 }
 
 #pragma mark - CLLocationManager delegate
