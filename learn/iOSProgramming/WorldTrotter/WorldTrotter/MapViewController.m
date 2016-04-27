@@ -40,9 +40,9 @@
 	leadingConstraint.active	= true;
 	traillingConstraint.active	= true;
 	
-	UIButton *location = [UIButton buttonWithType:UIButtonTypeSystem];
+	UIButton *location = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	[location setFrame:CGRectMake(0, 100, 0, 0)];
-	[location setTitle:@"Location" forState:UIControlStateNormal];
+    [location setImage:[UIImage imageNamed:@"Location"] forState:UIControlStateNormal];
 	location.contentMode = UIViewContentModeScaleToFill;
 	[location sizeToFit];
 	[location setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
@@ -66,22 +66,30 @@
 	}
 }
 
-- (void)beginShowUserLocation {
-    self.mapView.showsUserLocation  = YES;
-    self.locationButton.hidden      = YES;
-    [self activityIndicatorSetAnimate:YES];
+- (BOOL)showUserLocationAnnotation {
+    if (self.mapView.userLocation.location != nil && self.mapView.isUserLocationVisible != YES) {
+        [self.mapView showAnnotations:@[self.mapView.userLocation] animated:YES];
+        return YES;
+    } else {
+        return NO;
+    }
     
 }
 
-- (void)endShowUserLocation:(MKUserLocation *)userLocation {
+- (void)beginShowUserLocation {
+    self.mapView.showsUserLocation  = YES;
+    if ([self showUserLocationAnnotation] == YES) {
+        return;
+    }
+    self.locationButton.hidden      = YES;
+    [self activityIndicatorSetAnimate:YES];
+}
+
+- (void)endShowUserLocation {
     self.mapView.showsUserLocation  = NO;
     self.locationButton.hidden      = NO;
     [self activityIndicatorSetAnimate:NO];
-	if (userLocation) {
-		if ([self.mapView isUserLocationVisible] != YES) {
-			[self.mapView showAnnotations:@[userLocation] animated:YES];
-		}
-	}
+    [self showUserLocationAnnotation];
 }
 
 - (void)currentLocationShow {
@@ -136,12 +144,12 @@
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
 	NSLog(@"user location already updated.");
-	[self endShowUserLocation:userLocation];
+	[self endShowUserLocation];
 }
 
 -(void)mapView:(MKMapView *)mapView didFailToLocateUserWithError:(NSError *)error {
 	NSLog(@"faild to locate user err:%@", error);
-	[self endShowUserLocation:nil];
+	[self endShowUserLocation];
 }
 
 #pragma mark - CLLocationManager delegate
