@@ -7,6 +7,7 @@
 //
 
 #import "ItemsViewController.h"
+#import "LastItemCell.h"
 
 @interface ItemsViewController ()
 
@@ -42,16 +43,27 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.itemStore.allItems count];
+    return [self.itemStore.allItems count] + 1;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	ItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCell" forIndexPath:indexPath];
+	static NSString *LastCellIdentifier = @"LastItemCell";
+
+	// The Last cell.
+	if ([self indexPathIsTheLastCell:indexPath]) {
+		LastItemCell *cell = [tableView dequeueReusableCellWithIdentifier:LastCellIdentifier];
+		if (cell == nil) {
+			cell = [[LastItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LastCellIdentifier];
+		}
+		cell.userInteractionEnabled	= NO;
+		cell.mainLabel.text			= @"No more Item!";
+		return cell;
+	}
 	
+	ItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCell" forIndexPath:indexPath];
 	// Update the labels for the new prefferd text size.
 	[cell updateLabels];
-	
+
     // Configure the cell...
 	Item *item = [self.itemStore.allItems objectAtIndex:indexPath.row];
 	cell.nameLabel.text	= item.name;
@@ -61,13 +73,23 @@
     return cell;
 }
 
-/*
+-(BOOL)indexPathIsTheLastCell:(NSIndexPath *)indexPath {
+	if (indexPath.row == [self.itemStore.allItems count]) {
+		return YES;
+	} else {
+		return NO;
+	}
+}
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+	if ([self indexPathIsTheLastCell:indexPath]) {
+		return NO;
+	} else {
+    	return YES;
+	}
 }
-*/
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -96,14 +118,15 @@
 	[self.itemStore moveItemAtIndex:fromIndexPath.row toIndex:toIndexPath.row];
 }
 
-/*
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the item to be re-orderable.
-    return YES;
+	if ([self indexPathIsTheLastCell:indexPath]) {
+		return NO;
+	} else {
+		return YES;
+	}
 }
-*/
-
 
 #pragma mark - Navigation
 
@@ -126,6 +149,19 @@
 	if ((index = [self.itemStore.allItems indexOfObject:newItem]) != NSNotFound) {
 		NSIndexPath *indexPath	= [NSIndexPath indexPathForRow:index inSection:0];
 		[self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+	}
+}
+
+#pragma mark - UITableViewDelegate
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return @"Remove";
+}
+
+-(NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
+	if ([self indexPathIsTheLastCell:proposedDestinationIndexPath]) {
+		return sourceIndexPath;
+	} else {
+		return proposedDestinationIndexPath;
 	}
 }
 @end
