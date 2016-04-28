@@ -19,6 +19,15 @@
 	[textField resignFirstResponder];
 	return true;
 }
+
+- (IBAction)deleteItemImage:(UIBarButtonItem *)sender {
+	if (self.imageView.image == nil) {
+		return;
+	}
+	self.imageView.image	= nil;
+	[self.imageStore deleteImageForKey:self.item.itemKey];
+}
+
 - (IBAction)changeCreatedDate:(id)sender {
 	DatePickerViewController *datePickerViewController = [[DatePickerViewController alloc]init];
 	datePickerViewController.item	= self.item;
@@ -34,10 +43,12 @@
 	// just pick from photo library
 	if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
 		imagePicker.sourceType	= UIImagePickerControllerSourceTypeCamera;
+		imagePicker.cameraOverlayView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cross"]];
 	} else {
 		imagePicker.sourceType	= UIImagePickerControllerSourceTypePhotoLibrary;
 	}
 	imagePicker.delegate	= self;
+	imagePicker.allowsEditing		= YES;
 	[self presentViewController:imagePicker animated:true completion:nil];
 }
 

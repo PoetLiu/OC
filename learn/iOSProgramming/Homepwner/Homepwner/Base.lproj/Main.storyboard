@@ -88,16 +88,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rbN-eP-hoM">
-                                <rect key="frame" x="20" y="556" width="560" height="44"/>
-                                <items>
-                                    <barButtonItem systemItem="camera" id="oeS-he-Rqz">
-                                        <connections>
-                                            <action selector="takePicture:" destination="7e4-55-0JR" id="Wcm-nr-LMg"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hIs-7H-fRU">
                                 <rect key="frame" x="20" y="72" width="560" height="476"/>
                                 <subviews>
@@ -189,6 +179,21 @@
                                 </subviews>
                                 <variation key="heightClass=compact" axis="horizontal" distribution="fillEqually"/>
                             </stackView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rbN-eP-hoM">
+                                <rect key="frame" x="20" y="556" width="560" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="camera" id="oeS-he-Rqz">
+                                        <connections>
+                                            <action selector="takePicture:" destination="7e4-55-0JR" id="Wcm-nr-LMg"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="trash" id="fSM-Fj-j7o">
+                                        <connections>
+                                            <action selector="deleteItemImage:" destination="7e4-55-0JR" id="AB5-Rx-1e5"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>

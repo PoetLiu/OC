@@ -17,14 +17,15 @@
 	UIDatePicker *datePicker	= [[UIDatePicker alloc] init];
 	datePicker.datePickerMode	= UIDatePickerModeDateAndTime;
 	datePicker.backgroundColor	= [UIColor whiteColor];
-	[datePicker addTarget:self action:@selector(dateChanged) forControlEvents:UIControlEventValueChanged];
+	[datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
 	datePicker.date	= self.item.dateCreated;
 	self.datePicker	= datePicker;
 	self.view	= datePicker;
 }
 
--(void)dateChanged {
-	self.item.dateCreated	= self.datePicker.date;
+- (IBAction)dateChanged:(id)sender {
+	UIDatePicker *datePicker = (UIDatePicker *)sender;
+	self.item.dateCreated	= datePicker.date;
 }
 
 - (void)viewDidLoad {
