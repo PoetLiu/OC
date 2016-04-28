@@ -7,6 +7,7 @@
 //
 
 #import "DetailViewController.h"
+#import "DatePickerViewController.h"
 
 @interface DetailViewController ()
 
@@ -18,6 +19,12 @@
 	[textField resignFirstResponder];
 	return true;
 }
+- (IBAction)changeCreatedDate:(id)sender {
+	DatePickerViewController *datePickerViewController = [[DatePickerViewController alloc]init];
+	datePickerViewController.item	= self.item;
+	[self.navigationController pushViewController:datePickerViewController animated:YES];
+}
+
 - (IBAction)backgroundTapped:(UITapGestureRecognizer *)sender {
 	[self.view endEditing:true];
 }
@@ -46,13 +53,18 @@
 	[self dismissViewControllerAnimated:true completion:nil];
 }
 
+-(NSString *)dateStringWithDate:(NSDate *)date {
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateFormat:@"YYYY/MM/dd HH:mm:ss"];
+	return [dateFormatter stringFromDate:date];
+}
 - (void) viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	self.navigationItem.title	= self.item.name;
 	self.nameField.text 	= self.item.name;
 	self.serialNumberField.text	= self.item.serialNumber;
 	self.valueField.text	= [[NSString alloc] initWithFormat:@"%ld", (long)self.item.valueInDollars];
-	self.dateLabel.text		= [[NSString alloc] initWithFormat:@"%@", self.item.dateCreated];
+	self.dateLabel.text		= [[NSString alloc] initWithFormat:@"%@", [self dateStringWithDate:self.item.dateCreated]];
 	self.imageView.image	= [self.imageStore imageForKey:self.item.itemKey];
 }
 
@@ -71,7 +83,6 @@
     } else {
         self.item.valueInDollars    = 0;
     }
-
 }
 
 - (void)viewDidLoad {
@@ -93,5 +104,4 @@
     // Pass the selected object to the new view controller.
 }
 */
-
 @end

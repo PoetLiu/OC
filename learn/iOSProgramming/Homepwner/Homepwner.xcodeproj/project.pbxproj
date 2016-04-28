@@ -10,6 +10,8 @@
 		060488A11CAA1D9000CF0132 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 060488A01CAA1D9000CF0132 /* DetailViewController.m */; };
 		060488A41CABA2A400CF0132 /* ImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 060488A31CABA2A400CF0132 /* ImageStore.m */; };
 		06319D391CD0B40300B8676E /* LastItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06319D381CD0B40300B8676E /* LastItemCell.m */; };
+		06319D3C1CD1D89600B8676E /* MyUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 06319D3B1CD1D89600B8676E /* MyUITextField.m */; };
+		06319D451CD1FC7C00B8676E /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06319D431CD1FC7C00B8676E /* DatePickerViewController.m */; };
 		06421CC01CA4E0500047AFF3 /* ItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 06421CBF1CA4E0500047AFF3 /* ItemStore.m */; };
 		06421CC31CA540D70047AFF3 /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06421CC21CA540D70047AFF3 /* ItemCell.m */; };
 		066765221CA3E6720046B2A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 066765211CA3E6720046B2A0 /* main.m */; };
@@ -28,6 +30,10 @@
 		060488A31CABA2A400CF0132 /* ImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageStore.m; sourceTree = "<group>"; };
 		06319D371CD0B40300B8676E /* LastItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastItemCell.h; sourceTree = "<group>"; };
 		06319D381CD0B40300B8676E /* LastItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastItemCell.m; sourceTree = "<group>"; };
+		06319D3A1CD1D89600B8676E /* MyUITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUITextField.h; sourceTree = "<group>"; };
+		06319D3B1CD1D89600B8676E /* MyUITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUITextField.m; sourceTree = "<group>"; };
+		06319D431CD1FC7C00B8676E /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
+		06319D441CD1FC7C00B8676E /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
 		06421CBE1CA4E0500047AFF3 /* ItemStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemStore.h; sourceTree = "<group>"; };
 		06421CBF1CA4E0500047AFF3 /* ItemStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemStore.m; sourceTree = "<group>"; };
 		06421CC11CA540D70047AFF3 /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
@@ -84,6 +90,10 @@
 				0667653A1CA3EA430046B2A0 /* ItemsViewController.m */,
 				0604889F1CAA1D9000CF0132 /* DetailViewController.h */,
 				060488A01CAA1D9000CF0132 /* DetailViewController.m */,
+				06319D431CD1FC7C00B8676E /* DatePickerViewController.m */,
+				06319D441CD1FC7C00B8676E /* DatePickerViewController.h */,
+				06319D3A1CD1D89600B8676E /* MyUITextField.h */,
+				06319D3B1CD1D89600B8676E /* MyUITextField.m */,
 				060488A21CABA2A400CF0132 /* ImageStore.h */,
 				060488A31CABA2A400CF0132 /* ImageStore.m */,
 				06421CC11CA540D70047AFF3 /* ItemCell.h */,
@@ -180,11 +190,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06319D451CD1FC7C00B8676E /* DatePickerViewController.m in Sources */,
 				06421CC31CA540D70047AFF3 /* ItemCell.m in Sources */,
 				0667653F1CA3EC170046B2A0 /* Item.m in Sources */,
 				0667653B1CA3EA430046B2A0 /* ItemsViewController.m in Sources */,
 				066765251CA3E6720046B2A0 /* AppDelegate.m in Sources */,
 				066765221CA3E6720046B2A0 /* main.m in Sources */,
+				06319D3C1CD1D89600B8676E /* MyUITextField.m in Sources */,
 				06421CC01CA4E0500047AFF3 /* ItemStore.m in Sources */,
 				060488A11CAA1D9000CF0132 /* DetailViewController.m in Sources */,
 				06319D391CD0B40300B8676E /* LastItemCell.m in Sources */,
