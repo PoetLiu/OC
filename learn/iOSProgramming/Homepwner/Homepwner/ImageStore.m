@@ -19,7 +19,7 @@
 - (void) setImage:(UIImage *)image forKey:(NSString *)key {
 	[self.cache setObject:image forKey:key];
 	NSURL *imageURL	= [self imageURLForKey:key];
-	NSData *data	= UIImageJPEGRepresentation(image, 0.5);
+	NSData *data	= UIImagePNGRepresentation(image);
 	[data writeToURL:imageURL atomically:true];
 
 }
