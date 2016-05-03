@@ -18,11 +18,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nhd-Yl-8Wf">
+                                <rect key="frame" x="40" y="40" width="520" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="m3u-7w-Ydb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a1Z-LF-wpK">
+                                <rect key="frame" x="40" y="462" width="520" height="30"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="BZ8-BR-f39"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="="/>
+                                <connections>
+                                    <action selector="equalButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o83-Mm-F4f"/>
+                                </connections>
+                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yaP-au-phm">
-                                <rect key="frame" x="40" y="150" width="520" height="430"/>
+                                <rect key="frame" x="40" y="150" width="520" height="304"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="430" id="3BI-l2-1ly"/>
+                                    <constraint firstAttribute="height" constant="304" id="axI-Vg-KXO"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="4" id="RPs-oG-86Q">
                                     <size key="itemSize" width="70" height="70"/>
@@ -53,23 +73,18 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nhd-Yl-8Wf">
-                                <rect key="frame" x="40" y="40" width="520" height="90"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="m3u-7w-Ydb"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="a1Z-LF-wpK" firstAttribute="leading" secondItem="Nhd-Yl-8Wf" secondAttribute="leading" id="205-sh-FF6"/>
                             <constraint firstItem="yaP-au-phm" firstAttribute="trailing" secondItem="Nhd-Yl-8Wf" secondAttribute="trailing" id="6qt-AD-6ng"/>
                             <constraint firstItem="yaP-au-phm" firstAttribute="leading" secondItem="Nhd-Yl-8Wf" secondAttribute="leading" id="9PA-wM-zzN"/>
                             <constraint firstItem="yaP-au-phm" firstAttribute="top" secondItem="Nhd-Yl-8Wf" secondAttribute="bottom" constant="20" id="Cov-3x-Js4"/>
                             <constraint firstItem="Nhd-Yl-8Wf" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="FZk-wJ-Beb"/>
+                            <constraint firstItem="a1Z-LF-wpK" firstAttribute="top" secondItem="yaP-au-phm" secondAttribute="bottom" constant="8" id="GYw-NC-P4w"/>
                             <constraint firstItem="Nhd-Yl-8Wf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="R2a-Jn-j8o"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Nhd-Yl-8Wf" secondAttribute="trailing" constant="20" id="bdQ-YT-qw9"/>
+                            <constraint firstItem="a1Z-LF-wpK" firstAttribute="trailing" secondItem="Nhd-Yl-8Wf" secondAttribute="trailing" id="g98-ou-sOy"/>
                         </constraints>
                     </view>
                     <connections>
