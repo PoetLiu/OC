@@ -24,7 +24,6 @@
 +(CalculatorOperator *)nextOperator:(NSMutableArray *)params {
 	CalculatorOperator *next;
 	for (CalculatorElement *element in params) {
-		NSLog(@"elemetType:%d", element.elementType);
 		if (element.elementType != CalcElementTypeOperator) {
 			NSLog(@"continue");
 			continue;
@@ -33,24 +32,35 @@
 			next	= (CalculatorOperator *)element;
 		}
 	}
-	NSLog(@"next:%@", next);
 	return next;
+}
+
++(NSString *)resultTrim:(NSString *)res {
+    NSUInteger zeroNum = 0;
+    for (NSInteger i = (NSInteger)[res length]-1; i >= 0; i--) {
+        if ([res characterAtIndex:i] == '0') {
+            zeroNum++;
+        } else {
+            break;
+        }
+    }
+    return [res substringWithRange:NSMakeRange(0, [res length]-zeroNum-1)];
 }
 
 +(NSString *)calculator:(NSArray *)params {
 	CalculatorOperator *operator;
 	NSMutableArray *results = [NSMutableArray arrayWithArray:params];
+    NSString *res = nil;
 	
 	while ((operator = [Calculator nextOperator:results])) {
 		NSInteger indexOperator	= [results indexOfObject:operator];
 		CalculatorOperand *left = [results objectAtIndex:indexOperator-1];
 		CalculatorOperand *right = [results objectAtIndex:indexOperator+1];
-		NSLog(@"operator:%ld left:%@ right:%@", (long)indexOperator, left, right);
-		CalculatorOperand *resultOperand = operator.calculate(left, right);
+        CalculatorOperand *resultOperand = operator.calculate(left, right);
 		[results replaceObjectAtIndex:indexOperator withObject:resultOperand];
 		[results removeObjectsInArray:@[left, right]];
 	}
-	NSLog(@"result:%@", results);
-	return ((CalculatorOperand *)[results firstObject]).value;
+	res = ((CalculatorOperand *)[results firstObject]).value;
+    return [Calculator resultTrim:res];
 }
 @end
