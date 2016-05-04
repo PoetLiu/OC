@@ -10,4 +10,5 @@
 
 @interface Calculator : NSObject
 +(NSString * _Nullable)calculateWithExpression:(nonnull NSString *)expression;
++(NSArray *_Nullable)parseWithExpression:(nonnull NSString *)expression;
 @end

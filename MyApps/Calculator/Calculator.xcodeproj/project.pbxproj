@@ -11,14 +11,12 @@
 		06F78C7D1CD84DDC002FEB28 /* CalculatorElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F78C7C1CD84DDC002FEB28 /* CalculatorElement.m */; };
 		06F78C801CD852EC002FEB28 /* CalculatorOperand.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F78C7F1CD852EC002FEB28 /* CalculatorOperand.m */; };
 		06F78C861CD86C4C002FEB28 /* CalculatorOperator.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F78C851CD86C4C002FEB28 /* CalculatorOperator.m */; };
-		06F78C891CD87B29002FEB28 /* CalculatorParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F78C881CD87B29002FEB28 /* CalculatorParser.m */; };
 		06F89DFC1CD3054300F58CEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F89DFB1CD3054300F58CEB /* main.m */; };
 		06F89DFF1CD3054300F58CEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F89DFE1CD3054300F58CEB /* AppDelegate.m */; };
 		06F89E021CD3054300F58CEB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F89E011CD3054300F58CEB /* ViewController.m */; };
 		06F89E051CD3054300F58CEB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06F89E031CD3054300F58CEB /* Main.storyboard */; };
 		06F89E071CD3054300F58CEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06F89E061CD3054300F58CEB /* Assets.xcassets */; };
 		06F89E0A1CD3054300F58CEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06F89E081CD3054300F58CEB /* LaunchScreen.storyboard */; };
-		06F89E161CD34FAC00F58CEB /* CalculatorDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F89E151CD34FAC00F58CEB /* CalculatorDataSource.m */; };
 		06F89E191CD3534300F58CEB /* buttonCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F89E181CD3534300F58CEB /* buttonCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
@@ -31,8 +29,6 @@
 		06F78C7F1CD852EC002FEB28 /* CalculatorOperand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorOperand.m; sourceTree = "<group>"; };
 		06F78C841CD86C4C002FEB28 /* CalculatorOperator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorOperator.h; sourceTree = "<group>"; };
 		06F78C851CD86C4C002FEB28 /* CalculatorOperator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorOperator.m; sourceTree = "<group>"; };
-		06F78C871CD87B29002FEB28 /* CalculatorParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorParser.h; sourceTree = "<group>"; };
-		06F78C881CD87B29002FEB28 /* CalculatorParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorParser.m; sourceTree = "<group>"; };
 		06F89DF71CD3054300F58CEB /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06F89DFB1CD3054300F58CEB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		06F89DFD1CD3054300F58CEB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -43,8 +39,6 @@
 		06F89E061CD3054300F58CEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		06F89E091CD3054300F58CEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		06F89E0B1CD3054300F58CEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		06F89E141CD34FAC00F58CEB /* CalculatorDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorDataSource.h; sourceTree = "<group>"; };
-		06F89E151CD34FAC00F58CEB /* CalculatorDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorDataSource.m; sourceTree = "<group>"; };
 		06F89E171CD3534300F58CEB /* buttonCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buttonCollectionViewCell.h; sourceTree = "<group>"; };
 		06F89E181CD3534300F58CEB /* buttonCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = buttonCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,8 +77,6 @@
 				06F89DFE1CD3054300F58CEB /* AppDelegate.m */,
 				06F89E001CD3054300F58CEB /* ViewController.h */,
 				06F89E011CD3054300F58CEB /* ViewController.m */,
-				06F89E141CD34FAC00F58CEB /* CalculatorDataSource.h */,
-				06F89E151CD34FAC00F58CEB /* CalculatorDataSource.m */,
 				06F78C781CD84827002FEB28 /* Calculator.h */,
 				06F78C791CD84827002FEB28 /* Calculator.m */,
 				06F78C7B1CD84DDC002FEB28 /* CalculatorElement.h */,
@@ -93,8 +85,6 @@
 				06F78C7F1CD852EC002FEB28 /* CalculatorOperand.m */,
 				06F78C841CD86C4C002FEB28 /* CalculatorOperator.h */,
 				06F78C851CD86C4C002FEB28 /* CalculatorOperator.m */,
-				06F78C871CD87B29002FEB28 /* CalculatorParser.h */,
-				06F78C881CD87B29002FEB28 /* CalculatorParser.m */,
 				06F89E171CD3534300F58CEB /* buttonCollectionViewCell.h */,
 				06F89E181CD3534300F58CEB /* buttonCollectionViewCell.m */,
 				06F89E031CD3054300F58CEB /* Main.storyboard */,
@@ -185,7 +175,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06F78C891CD87B29002FEB28 /* CalculatorParser.m in Sources */,
 				06F78C7D1CD84DDC002FEB28 /* CalculatorElement.m in Sources */,
 				06F78C801CD852EC002FEB28 /* CalculatorOperand.m in Sources */,
 				06F89E021CD3054300F58CEB /* ViewController.m in Sources */,
@@ -193,7 +182,6 @@
 				06F89E191CD3534300F58CEB /* buttonCollectionViewCell.m in Sources */,
 				06F89DFF1CD3054300F58CEB /* AppDelegate.m in Sources */,
 				06F78C7A1CD84827002FEB28 /* Calculator.m in Sources */,
-				06F89E161CD34FAC00F58CEB /* CalculatorDataSource.m in Sources */,
 				06F89DFC1CD3054300F58CEB /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

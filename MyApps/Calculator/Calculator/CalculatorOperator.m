@@ -14,19 +14,11 @@
 		self.operatorType	= type;
 		switch (type) {
 			case CalcOperatorTypePlus:
-				self.calculate	= calculatePlus;
-				self.priority	= CalcOperatorPriorityNormal;
-				break;
 			case CalcOperatorTypeMinus:
-				self.calculate	= calculateMinus;
 				self.priority	= CalcOperatorPriorityNormal;
 				break;
 			case CalcOperatorTypeDivide:
-				self.calculate	= calculateDivide;
-				self.priority	= CalcOperatorPriorityHigh;
-				break;
 			case CalcOperatorTypeMultiply:
-				self.calculate	= calculateMultiply;
 				self.priority	= CalcOperatorPriorityHigh;
 				break;
 			default:
@@ -63,40 +55,25 @@
 	}
 }
 
-CalculatorOperand* calculatePlus(CalculatorOperand *left, CalculatorOperand *right) {
-	if (left == nil || right == nil) {
-		return nil;
-	};
-	double result = [left.value doubleValue] + [right.value doubleValue];
-	return [[CalculatorOperand alloc] initWithValue:[NSString stringWithFormat:@"%lf", result]];
-}
-
-CalculatorOperand* calculateMinus(CalculatorOperand *left, CalculatorOperand *right) {
-	if (left == nil || right == nil) {
-		return nil;
+-(CalculatorOperand*) calculateWithLeftOperand:(CalculatorOperand *)left rightOperand:(CalculatorOperand *)right {
+	double result = 0.0f;
+	switch (self.operatorType) {
+		case CalcOperatorTypePlus:
+			result = [left.value doubleValue] + [right.value doubleValue];
+			break;
+		case CalcOperatorTypeMinus:
+			result = [left.value doubleValue] - [right.value doubleValue];
+			break;
+		case CalcOperatorTypeDivide:
+			result = [left.value doubleValue] * [right.value doubleValue];
+			break;
+		case CalcOperatorTypeMultiply:
+			result = [left.value doubleValue] / [right.value doubleValue];
+			break;
+		default:
+			return nil;
+			break;
 	}
-	double result = [left.value doubleValue] - [right.value doubleValue];
 	return [[CalculatorOperand alloc] initWithValue:[NSString stringWithFormat:@"%lf", result]];
 }
-
-CalculatorOperand* calculateDivide(CalculatorOperand *left, CalculatorOperand *right) {
-	if (left == nil || right == nil) {
-		return nil;
-	}
-	double result = [left.value doubleValue] / [right.value doubleValue];
-	return [[CalculatorOperand alloc] initWithValue:[NSString stringWithFormat:@"%lf", result]];
-}
-
-CalculatorOperand* calculateMultiply(CalculatorOperand *left, CalculatorOperand *right) {
-	if (left == nil || right == nil) {
-		return nil;
-	}
-	double result = [left.value doubleValue] * [right.value doubleValue];
-	return [[CalculatorOperand alloc] initWithValue:[NSString stringWithFormat:@"%lf", result]];
-}
-
--(NSString *)description {
-	return [NSString stringWithFormat:@"Operator type:%d priority:%d", self.operatorType, self.priority];
-}
-
 @end

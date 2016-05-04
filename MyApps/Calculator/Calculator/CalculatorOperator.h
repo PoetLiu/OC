@@ -25,8 +25,8 @@ typedef enum CalcOperatorPriority {
 @interface CalculatorOperator : CalculatorElement
 @property (nonatomic, assign) CalcOperatorType operatorType;
 @property (nonatomic, assign) CalcOperatorPriority priority;
-@property (nonatomic, assign) CalculatorOperand * (*calculate)(CalculatorOperand *left, CalculatorOperand *right);
 +(BOOL)characterIsOperator:(unichar)c;
 +(CalcOperatorType)characterOperatorType:(unichar)c;
 -(instancetype)initWithOperatorType:(CalcOperatorType)type;
+-(CalculatorOperand*) calculateWithLeftOperand:(CalculatorOperand *)left rightOperand:(CalculatorOperand *)right;
 @end
