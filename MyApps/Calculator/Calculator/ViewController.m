@@ -17,7 +17,70 @@
 @property (nonatomic, assign) CGFloat screenWidth;
 @end
 
+typedef enum {
+    kButtonUnkown,
+    kButtonAdd,
+    kButtonSub,
+    kButtonDivide,
+    kButtonMultiply,
+    
+    kButtonSeven,
+    kButtonEight,
+    kButtonNine,
+    
+    kButtonFour,
+    kButtonFive,
+    kButtonSix,
+    
+    kButtonOne,
+    kButtonTwo,
+    kButtonThree,
+    
+    kButtonZero,
+    kButtonDot,
+    kButtonEqual
+} kButtonId;
+
 @implementation ViewController
+
+- (kButtonId) buttonIdWithLabel:(NSString *)label {
+    unichar ch =  [label characterAtIndex:0];
+    switch (ch) {
+        case '0':
+            return kButtonZero;
+        case '1':
+            return kButtonOne;
+        case '2':
+            return kButtonTwo;
+        case '3':
+            return kButtonThree;
+        case '4':
+            return kButtonFour;
+        case '5':
+            return kButtonFive;
+        case '6':
+            return kButtonSix;
+        case '7':
+            return kButtonSeven;
+        case '8':
+            return kButtonEight;
+        case '9':
+            return kButtonNine;
+        case '.':
+            return kButtonDot;
+        case '+':
+            return kButtonAdd;
+        case '-':
+            return kButtonSub;
+        case '*':
+            return kButtonMultiply;
+        case '/':
+            return kButtonDivide;
+        case '=':
+            return kButtonEqual;
+    }
+    return kButtonUnkown;
+}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -40,28 +103,27 @@
 	[_resultField.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active	= YES;
 	[_resultField.heightAnchor constraintEqualToConstant:_screenHeight/7*2].active	= YES;
 	
-	self.buttonLables	= @[@"7", @"8", @"9", @"+",
+    self.buttonLables	= @[@"7", @"8", @"9", @"+",
 							@"4", @"5", @"6", @"-",
 							@"1", @"2", @"3", @"*",
 							@"0", @".", @"=", @"/"];
-	
-	NSInteger buttonBaseY = _screenHeight/7*2;
-	NSInteger buttonWidth = _screenWidth/4;
-	NSInteger buttonHeight = _screenHeight/7;
 	for (NSInteger i = 0; i < self.buttonLables.count; i++) {
 		NSString *label	= [self.buttonLables objectAtIndex:i];
-		[self addButtonWithTitle:label frame:CGRectMake((i%4)*buttonWidth, buttonBaseY+buttonHeight*(i/4), buttonHeight, buttonWidth) tag:i];
+        [self addButtonWithTitle:label row:i/4 line:i%4];
 	}
-	
 }
 
-- (void)addButtonWithTitle:(NSString *)title frame:(CGRect)frame tag:(NSInteger)tag{
-	UIButton *new = [[UIButton alloc] initWithFrame:frame];
-	new.tag	= tag;
-	if (title) new.titleLabel.text	= title;
+
+- (void)addButtonWithTitle:(NSString *)title row:(NSInteger)row line:(NSInteger)line {
+    UIButton *new   = [UIButton buttonWithType:UIButtonTypeSystem];
+	
+    if (title) {
+        [new setTitle:title forState:UIControlStateNormal];
+        new.tag     = [self buttonIdWithLabel:title];
+    }
 	new.titleLabel.font = [UIFont systemFontOfSize:60];
-	new.titleLabel.textColor	= [UIColor whiteColor];
-	new.backgroundColor	= [[UIColor blackColor] colorWithAlphaComponent:0.5];
+	new.titleLabel.textColor    = [UIColor whiteColor];
+	new.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
 	if (_buttons == nil) {
 		self.buttons	= [[NSMutableArray alloc] init];
 	}
