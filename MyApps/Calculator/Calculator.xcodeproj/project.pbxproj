@@ -17,7 +17,6 @@
 		06F89E051CD3054300F58CEB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06F89E031CD3054300F58CEB /* Main.storyboard */; };
 		06F89E071CD3054300F58CEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06F89E061CD3054300F58CEB /* Assets.xcassets */; };
 		06F89E0A1CD3054300F58CEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06F89E081CD3054300F58CEB /* LaunchScreen.storyboard */; };
-		06F89E191CD3534300F58CEB /* buttonCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F89E181CD3534300F58CEB /* buttonCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,8 +38,6 @@
 		06F89E061CD3054300F58CEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		06F89E091CD3054300F58CEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		06F89E0B1CD3054300F58CEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		06F89E171CD3534300F58CEB /* buttonCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buttonCollectionViewCell.h; sourceTree = "<group>"; };
-		06F89E181CD3534300F58CEB /* buttonCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = buttonCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +82,6 @@
 				06F78C7F1CD852EC002FEB28 /* CalculatorOperand.m */,
 				06F78C841CD86C4C002FEB28 /* CalculatorOperator.h */,
 				06F78C851CD86C4C002FEB28 /* CalculatorOperator.m */,
-				06F89E171CD3534300F58CEB /* buttonCollectionViewCell.h */,
-				06F89E181CD3534300F58CEB /* buttonCollectionViewCell.m */,
 				06F89E031CD3054300F58CEB /* Main.storyboard */,
 				06F89E061CD3054300F58CEB /* Assets.xcassets */,
 				06F89E081CD3054300F58CEB /* LaunchScreen.storyboard */,
@@ -179,7 +174,6 @@
 				06F78C801CD852EC002FEB28 /* CalculatorOperand.m in Sources */,
 				06F89E021CD3054300F58CEB /* ViewController.m in Sources */,
 				06F78C861CD86C4C002FEB28 /* CalculatorOperator.m in Sources */,
-				06F89E191CD3534300F58CEB /* buttonCollectionViewCell.m in Sources */,
 				06F89DFF1CD3054300F58CEB /* AppDelegate.m in Sources */,
 				06F78C7A1CD84827002FEB28 /* Calculator.m in Sources */,
 				06F89DFC1CD3054300F58CEB /* main.m in Sources */,
