@@ -19,74 +19,10 @@
 @property (nonatomic, assign) CGFloat buttonWidth;
 @end
 
-typedef enum {
-    kButtonUnkown,
-    kButtonAdd,
-    kButtonSub,
-    kButtonDivide,
-    kButtonMultiply,
-    
-    kButtonSeven,
-    kButtonEight,
-    kButtonNine,
-    kButtonFour,
-    kButtonFive,
-    kButtonSix,
-    kButtonOne,
-    kButtonTwo,
-    kButtonThree,
-    kButtonZero,
-    kButtonDot,
-	
-    kButtonEqual,
-	kButtonClear
-} kButtonId;
-
 @implementation ViewController
 
 static const NSInteger BUTTON_SPACE_VERTICAL = 1.0f;
 static const NSInteger BUTTON_SPACE_HORIZONTAL = 1.0f;
-
-- (kButtonId) buttonIdWithLabel:(NSString *)label {
-    unichar ch =  [label characterAtIndex:0];
-    switch (ch) {
-        case '0':
-            return kButtonZero;
-        case '1':
-            return kButtonOne;
-        case '2':
-            return kButtonTwo;
-        case '3':
-            return kButtonThree;
-        case '4':
-            return kButtonFour;
-        case '5':
-            return kButtonFive;
-        case '6':
-            return kButtonSix;
-        case '7':
-            return kButtonSeven;
-        case '8':
-            return kButtonEight;
-        case '9':
-            return kButtonNine;
-        case '.':
-            return kButtonDot;
-        case '+':
-            return kButtonAdd;
-        case '-':
-            return kButtonSub;
-        case '*':
-            return kButtonMultiply;
-        case '/':
-            return kButtonDivide;
-        case '=':
-			return kButtonEqual;
-		case 'C':
-			return kButtonClear;
-    }
-    return kButtonUnkown;
-}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -142,7 +78,6 @@ static const NSInteger BUTTON_SPACE_HORIZONTAL = 1.0f;
 	
     if (title) {
         [new setTitle:title forState:UIControlStateNormal];
-        new.tag     = [self buttonIdWithLabel:title];
     }
 	new.backgroundColor	= [UIColor lightGrayColor];
 	new.titleLabel.font = [UIFont systemFontOfSize:60];
@@ -160,32 +95,31 @@ static const NSInteger BUTTON_SPACE_HORIZONTAL = 1.0f;
 }
 
 -(void)buttonPressed:(id)sender {
-	switch ([sender tag]) {
-		case kButtonZero:
-		case kButtonOne:
-		case kButtonTwo:
-		case kButtonThree:
-		case kButtonFour:
-		case kButtonFive:
-		case kButtonSix:
-		case kButtonSeven:
-		case kButtonEight:
-		case kButtonNine:
-		case kButtonDot:
-		case kButtonAdd:
-		case kButtonSub:
-		case kButtonMultiply:
-		case kButtonDivide:
+	switch ([[sender titleForState:UIControlStateNormal] characterAtIndex:0]) {
+		case '0':
+		case '1':
+		case '2':
+		case '3':
+		case '4':
+		case '5':
+		case '6':
+		case '7':
+		case '8':
+		case '9':
+		case '.':
+		case '+':
+		case '-':
+		case '*':
+		case '/':
 			self.resultField.text	= [self.resultField.text stringByAppendingString:[sender titleForState:UIControlStateNormal]];
 			break;
-		case kButtonEqual:
+		case '=':
 			self.resultField.text	= [Calculator calculateWithExpression:self.resultField.text];
 			break;
-		case kButtonClear:
+		case 'C':
 			self.resultField.text	= nil;
 			break;
 	}
-	
 }
 
 - (void)didReceiveMemoryWarning {
