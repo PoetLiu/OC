@@ -104,7 +104,7 @@ static const NSInteger BUTTON_SPACE_HORIZONTAL = 1.0f;
 	_resultField.contentHorizontalAlignment	= UIControlContentHorizontalAlignmentRight;
 	_resultField.translatesAutoresizingMaskIntoConstraints	= NO;
 	[self.view addSubview:_resultField];
-	[_resultField.topAnchor constraintEqualToAnchor:[self.topLayoutGuide bottomAnchor]].active	= YES;
+	[_resultField.topAnchor constraintEqualToAnchor:self.view.topAnchor].active	= YES;
 	[_resultField.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active	= YES;
 	[_resultField.heightAnchor constraintEqualToConstant:_screenHeight/7*2].active	= YES;
 	
