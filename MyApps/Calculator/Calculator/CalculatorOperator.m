@@ -65,10 +65,10 @@
 			result = [left.value doubleValue] - [right.value doubleValue];
 			break;
 		case CalcOperatorTypeDivide:
-			result = [left.value doubleValue] * [right.value doubleValue];
+			result = [left.value doubleValue] / [right.value doubleValue];
 			break;
 		case CalcOperatorTypeMultiply:
-			result = [left.value doubleValue] / [right.value doubleValue];
+			result = [left.value doubleValue] * [right.value doubleValue];
 			break;
 		default:
 			return nil;
