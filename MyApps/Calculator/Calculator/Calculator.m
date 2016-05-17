@@ -127,7 +127,9 @@ ret:
             break;
         }
     }
-    return [res substringWithRange:NSMakeRange(0, [res length]-zeroNum-1)];
+	if ([res characterAtIndex:[res length]-1-zeroNum] == '.')
+		zeroNum++;
+    return [res substringWithRange:NSMakeRange(0, [res length]-zeroNum)];
 }
 
 @end
