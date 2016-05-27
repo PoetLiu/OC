@@ -11,10 +11,11 @@
 @implementation CalculatorOperand
 -(instancetype)initWithValue:(NSString *)value {
 	if (self = [super initWithElementType:CalcElementTypeOperand]) {
-		self.value	= value;
+		_value	= [value copy];
 	}
 	return self;
 }
+
 +(BOOL)characterIsOperand:(unichar)c
 {
 	return isalnum(c) || c == '.';
