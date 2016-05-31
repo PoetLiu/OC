@@ -8,11 +8,16 @@
 
 #import "CustomItem.h"
 
+@interface CustomItem ()
+
+@end
+
 @implementation CustomItem
-- (id) initWithQuestion:(NSString *)ques answer:(NSString *)ans {
+
+- (id) initWithQuestion:(NSString *)question answer:(NSString *)answer {
 	if (self = [super init]) {
-		self.question	= ques;
-		self.answer		= ans;
+		_question	= [question copy];
+		_answer		= [answer copy];
 	}
 	return (self);
 }

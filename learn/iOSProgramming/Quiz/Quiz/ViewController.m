@@ -10,8 +10,10 @@
 #import "CustomItem.h"
 
 @interface ViewController ()
-@property (strong, nonatomic)NSMutableArray *data;
-@property NSInteger currentQuestionIndex;
+
+@property (nonatomic, strong) NSMutableArray <__kindof CustomItem*> *data;
+@property (nonatomic, assign) NSInteger currentQuestionIndex;
+
 @end
 
 @implementation ViewController
@@ -21,12 +23,12 @@
 	self.nextQuestionLabelCenterXConstraint.constant	= 0;
 	self.currentQuestionLabelCenterXConstraint.constant	+= screenWidth;
 	
-	void(^animationBlock)(void)	= ^(void) {
+	void (^animationBlock)(void)	= ^(void) {
 		self.currentQuestionLabel.alpha	= 0;
 		self.nextQuestionLabel.alpha	= 1;
 		[self.view layoutIfNeeded];
-		NSLog(@"Hello");
 	};
+    
 	[UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionAllowAnimatedContent animations:animationBlock completion:^(BOOL in){
 		UILabel *tmp = self.currentQuestionLabel;
 		self.currentQuestionLabel	= self.nextQuestionLabel;
@@ -36,7 +38,7 @@
 		self.currentQuestionLabelCenterXConstraint	= self.nextQuestionLabelCenterXConstraint;
 		self.nextQuestionLabelCenterXConstraint		= tmp1;
 		[self updateOffScreenLabel];
-		}];
+    }];
 }
 
 - (void)updateQuestionLableText:(UILabel *)questionLabel {
@@ -48,6 +50,7 @@
 	CustomItem *item	= self.data[self.currentQuestionIndex];
 	self.answerLabel.text		= item.answer;
 }
+
 - (void)initAnswerLableText {
 	self.answerLabel.text = @"???";
 }
@@ -64,10 +67,12 @@
 	self.currentQuestionIndex	= 0;
 	[self updateQuestionLableText:self.currentQuestionLabel];
 }
+
 - (void)updateOffScreenLabel {
 	CGFloat screenWidth	= self.view.frame.size.width;
 	self.nextQuestionLabelCenterXConstraint.constant	= -screenWidth;
 }
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	[self initParam];

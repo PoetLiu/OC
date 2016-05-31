@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UILabel *currentQuestionLabel;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *currentQuestionLabelCenterXConstraint;
+@property (nonatomic, weak) IBOutlet UILabel *currentQuestionLabel;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *currentQuestionLabelCenterXConstraint;
 
-@property (weak, nonatomic) IBOutlet UILabel *nextQuestionLabel;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nextQuestionLabelCenterXConstraint;
+@property (nonatomic, weak) IBOutlet UILabel *nextQuestionLabel;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *nextQuestionLabelCenterXConstraint;
 
-@property (weak, nonatomic) IBOutlet UILabel *answerLabel;
+@property (nonatomic, weak) IBOutlet UILabel *answerLabel;
 
 - (IBAction)showNextQuestion:(id)sender;
 - (IBAction)showAnswer:(id)sender;

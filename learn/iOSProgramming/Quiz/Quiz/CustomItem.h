@@ -9,7 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface CustomItem : NSObject
-@property NSString *question;
-@property NSString *answer;
+
+@property (nonatomic, copy) NSString *question;
+@property (nonatomic, copy) NSString *answer;
+
 - (id) initWithQuestion: (NSString *)question answer:(NSString *)answer;
+
 @end
