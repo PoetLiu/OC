@@ -11,13 +11,13 @@
 
 @implementation Calculator
 
-typedef enum CalcParseState {
+typedef NS_ENUM (NSUInteger, CalcParseState) {
 	CalcParseStateInit,
 	CalcParseStateStart,
 	CalcParseStateOperand,
 	CalcParseStateOperator,
 	CalcParseStateEnd
-}CalcParseState;
+};
 
 +(NSArray *)parseWithExpression:(nonnull NSString *)expression {
 	CalcParseState state = CalcParseStateInit;
@@ -72,7 +72,7 @@ typedef enum CalcParseState {
 	
 ret:
 	if (state != CalcParseStateEnd) {
-		NSLog(@"Parse expression faild, expression:%@, state:%d", expression, state);
+		NSLog(@"Parse expression faild, expression:%@, state:%lu", expression, state);
 		return nil;
 	}
 	NSLog(@"%@", param);

@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum CalcElementType {
+typedef NS_ENUM(NSUInteger, CalcElementType) {
 	CalcElementTypeOperand,
 	CalcElementTypeOperator
-}CalcElementType;
+};
 
 @interface CalculatorElement : NSObject
 @property (nonatomic, assign) CalcElementType elementType;

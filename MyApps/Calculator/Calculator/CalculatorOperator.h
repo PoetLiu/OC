@@ -9,18 +9,18 @@
 #import "CalculatorElement.h"
 #import "CalculatorOperand.h"
 
-typedef enum CalcOperatorType {
+typedef NS_ENUM(NSInteger, CalcOperatorType) {
 	CalcOperatorTypeErr = -1,
 	CalcOperatorTypePlus,
 	CalcOperatorTypeMinus,
 	CalcOperatorTypeMultiply,
 	CalcOperatorTypeDivide
-}CalcOperatorType;
+};
 
-typedef enum CalcOperatorPriority {
+typedef NS_ENUM(NSUInteger, CalcOperatorPriority) {
 	CalcOperatorPriorityNormal,
 	CalcOperatorPriorityHigh,
-}CalcOperatorPriority;
+};
 
 @interface CalculatorOperator : CalculatorElement
 @property (nonatomic, assign) CalcOperatorType operatorType;

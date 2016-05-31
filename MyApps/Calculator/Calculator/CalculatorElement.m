@@ -11,11 +11,11 @@
 @implementation CalculatorElement
 -(instancetype)initWithElementType:(CalcElementType)type {
 	if (self = [super init]) {
-		self.elementType	= type;
+		_elementType	= type;
 	}
 	return self;
 }
 -(NSString *)description {
-	return [NSString stringWithFormat:@"%d", self.elementType];
+	return [NSString stringWithFormat:@"%lu", _elementType];
 }
 @end
