@@ -18,7 +18,9 @@
 @implementation ViewController
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 	[self.navigationController setNavigationBarHidden:YES animated:NO];
+    [self.navigationController setToolbarHidden:NO animated:NO];
 }
 
 - (void)activityIndicatorSetAnimate:(BOOL)animate {
