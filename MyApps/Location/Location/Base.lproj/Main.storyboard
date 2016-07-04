@@ -37,6 +37,9 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="Ipr-eM-um1"/>
+                    <connections>
+                        <outlet property="mapView" destination="tBC-K6-7Cr" id="7Ro-wK-sje"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
