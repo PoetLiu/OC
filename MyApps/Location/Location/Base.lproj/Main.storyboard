@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -20,12 +21,21 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="tBC-K6-7Cr">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Evb-t4-Pkq">
+                                <rect key="frame" x="20" y="518" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="locationButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kh5-S6-sSG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="tBC-K6-7Cr" firstAttribute="top" secondItem="sqK-Bg-1ZB" secondAttribute="top" id="21P-BQ-B80"/>
                             <constraint firstAttribute="trailing" secondItem="tBC-K6-7Cr" secondAttribute="trailing" id="7Ya-DT-ISb"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Evb-t4-Pkq" secondAttribute="leading" id="LK4-7T-hGk"/>
                             <constraint firstAttribute="bottom" secondItem="tBC-K6-7Cr" secondAttribute="bottom" id="fCH-6t-LHV"/>
+                            <constraint firstItem="RDs-ce-KLn" firstAttribute="top" secondItem="Evb-t4-Pkq" secondAttribute="bottom" constant="8" id="g9a-d2-4UC"/>
                             <constraint firstItem="tBC-K6-7Cr" firstAttribute="leading" secondItem="sqK-Bg-1ZB" secondAttribute="leading" id="yBS-Ia-Dz7"/>
                         </constraints>
                     </view>
@@ -38,6 +48,7 @@
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="Ipr-eM-um1"/>
                     <connections>
+                        <outlet property="locationButton" destination="Evb-t4-Pkq" id="Aym-2G-sYu"/>
                         <outlet property="mapView" destination="tBC-K6-7Cr" id="7Ro-wK-sje"/>
                     </connections>
                 </viewController>
