@@ -40,11 +40,13 @@
                         </constraints>
                     </view>
                     <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="HDW-C6-cJr"/>
                         <barButtonItem title="More" id="zLw-RU-91g">
                             <connections>
                                 <segue destination="5nM-1X-0Oq" kind="show" id="gSN-4n-OCk"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="KLn-ck-rUS"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="Ipr-eM-um1"/>
                     <connections>
