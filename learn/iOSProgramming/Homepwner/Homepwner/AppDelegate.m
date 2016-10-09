@@ -7,8 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import "ImageStore.h"
+#import "ItemStore.h"
+#import "ItemsViewController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <UIApplicationDelegate>
 
 @end
 

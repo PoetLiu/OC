@@ -7,6 +7,7 @@
 //
 
 #import "ItemStore.h"
+#import "Item.h"
 
 @implementation ItemStore
 

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Item.h"
+
+@class Item;
 
 @interface DatePickerViewController : UIViewController
 @property (strong, nonatomic) UIDatePicker *datePicker;

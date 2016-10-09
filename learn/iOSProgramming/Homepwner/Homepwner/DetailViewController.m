@@ -8,8 +8,10 @@
 
 #import "DetailViewController.h"
 #import "DatePickerViewController.h"
+#import "Item.h"
+#import "ImageStore.h"
 
-@interface DetailViewController ()
+@interface DetailViewController () <UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @end
 

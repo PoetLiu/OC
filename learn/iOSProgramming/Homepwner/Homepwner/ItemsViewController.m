@@ -8,6 +8,11 @@
 
 #import "ItemsViewController.h"
 #import "LastItemCell.h"
+#import "ItemStore.h"
+#import "ItemCell.h"
+#import "ImageStore.h"
+#import "Item.h"
+#import "DetailViewController.h"
 
 @interface ItemsViewController ()
 

@@ -11,8 +11,8 @@
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
-@property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
-@property (strong, nonatomic) UIButton *locationButton;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (strong, nonatomic) IBOutlet UIButton *locationButton;
 @end
 
 @implementation ViewController
@@ -61,6 +61,10 @@
 	self.locationButton.hidden      = NO;
 	[self activityIndicatorSetAnimate:NO];
 	[self showUserLocationAnnotation];
+}
+
+- (IBAction)locationButtonPressed:(id)sender {
+	[self currentLocationShow];
 }
 
 - (void)currentLocationShow {
@@ -114,17 +118,6 @@
 	topConstraint.active	= true;
 	leadingConstraint.active	= true;
 	traillingConstraint.active	= true;
-	
-	UIButton *location = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	[location setFrame:CGRectMake(0, 100, 0, 0)];
-	[location setImage:[UIImage imageNamed:@"Location"] forState:UIControlStateNormal];
-	location.contentMode = UIViewContentModeScaleToFill;
-	[location sizeToFit];
-	[location setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-	[location addTarget:self action:@selector(currentLocationShow) forControlEvents:UIControlEventTouchUpInside];
-	NSLog(@"x:%f y:%f width:%f heigth:%f", location.frame.origin.x, location.frame.origin.y, location.frame.size.height, location.frame.size.width);
-	self.locationButton	= location;
-	[self.view addSubview:location];
 	
 	// Do any additional setup after loading the view.
 }

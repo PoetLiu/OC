@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ItemStore.h"
-#import "ItemCell.h"
-#import "ImageStore.h"
-#import "DetailViewController.h"
+
+@class ImageStore;
+@class ItemStore;
+
 @interface ItemsViewController : UITableViewController
 @property (strong, nonatomic) ItemStore *itemStore;
 @property (strong, nonatomic) ImageStore *imageStore;

@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Item.h"
-#import "ImageStore.h"
 
-@interface DetailViewController : UIViewController <UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@class Item;
+@class ImageStore;
+
+@interface DetailViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *serialNumberField;
 @property (weak, nonatomic) IBOutlet UITextField *valueField;

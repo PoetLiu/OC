@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Item.h"
 
+@class Item;
 @interface ItemStore : NSObject
 @property NSMutableArray *allItems;
 @property NSURL *itemArchiveURL;

@@ -7,6 +7,7 @@
 //
 
 #import "DatePickerViewController.h"
+#import "Item.h"
 
 @interface DatePickerViewController ()
 @end
