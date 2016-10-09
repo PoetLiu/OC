@@ -11,8 +11,8 @@
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
-@property (strong, nonatomic) IBOutlet UIButton *locationButton;
+@property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UIButton *locationButton;
 @end
 
 @implementation ViewController
@@ -64,7 +64,7 @@
 }
 
 - (IBAction)locationButtonPressed:(id)sender {
-	[self currentLocationShow];
+    [self currentLocationShow];
 }
 
 - (void)currentLocationShow {

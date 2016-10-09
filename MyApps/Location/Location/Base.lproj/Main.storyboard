@@ -2,7 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1909" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="u66-Yv-OtN">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -21,11 +22,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LTM-qT-xBn">
-                                <rect key="frame" x="20" y="518" width="67" height="30"/>
-                                <state key="normal" title="Location"/>
-                                <connections>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Evb-t4-Pkq">
+                                <rect key="frame" x="20" y="518" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
                                     <action selector="locationButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mmA-of-no5"/>
-                                </connections>
+                                    <action selector="locationButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kh5-S6-sSG"/>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="FBD-LA-6Fr">
                                 <rect key="frame" x="43" y="523" width="20" height="20"/>
@@ -53,8 +54,7 @@
                     <navigationItem key="navigationItem" id="Ipr-eM-um1"/>
                     <connections>
                         <outlet property="activityIndicator" destination="FBD-LA-6Fr" id="1zu-ob-RjG"/>
-                        <outlet property="locationButton" destination="LTM-qT-xBn" id="iS5-eJ-fvC"/>
-                        <outlet property="mapView" destination="tBC-K6-7Cr" id="7Ro-wK-sje"/>
+                        <outlet property="locationButton" destination="Evb-t4-Pkq" id="Aym-2G-sYu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
