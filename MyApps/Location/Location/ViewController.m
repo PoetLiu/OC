@@ -100,6 +100,8 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	NSLog(@"MapViewController loaded its view");
+    
+    self.mapView.delegate  = self;
 	
 	NSString *standardString	= NSLocalizedString(@"Standard", @"Standard map view");
 	NSString *satelliteString	= NSLocalizedString(@"Satellite", @"Satellite map view");

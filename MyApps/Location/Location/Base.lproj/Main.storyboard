@@ -35,16 +35,20 @@
                         <constraints>
                             <constraint firstItem="tBC-K6-7Cr" firstAttribute="top" secondItem="sqK-Bg-1ZB" secondAttribute="top" id="21P-BQ-B80"/>
                             <constraint firstAttribute="trailing" secondItem="tBC-K6-7Cr" secondAttribute="trailing" id="7Ya-DT-ISb"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Evb-t4-Pkq" secondAttribute="leading" id="LK4-7T-hGk"/>
                             <constraint firstAttribute="bottom" secondItem="tBC-K6-7Cr" secondAttribute="bottom" id="fCH-6t-LHV"/>
+                            <constraint firstItem="RDs-ce-KLn" firstAttribute="top" secondItem="Evb-t4-Pkq" secondAttribute="bottom" constant="8" id="g9a-d2-4UC"/>
                             <constraint firstItem="tBC-K6-7Cr" firstAttribute="leading" secondItem="sqK-Bg-1ZB" secondAttribute="leading" id="yBS-Ia-Dz7"/>
                         </constraints>
                     </view>
                     <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="HDW-C6-cJr"/>
                         <barButtonItem title="More" id="zLw-RU-91g">
                             <connections>
                                 <segue destination="5nM-1X-0Oq" kind="show" id="gSN-4n-OCk"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="KLn-ck-rUS"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="Ipr-eM-um1"/>
                     <connections>

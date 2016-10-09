@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06376CA01D2BF4EE002CEEAB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06FA18E61D26161500E4E187 /* MapKit.framework */; };
 		0673C5141D24C70F001C68A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673C5131D24C70F001C68A4 /* main.m */; };
 		0673C5171D24C70F001C68A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673C5161D24C70F001C68A4 /* AppDelegate.m */; };
 		0673C51A1D24C70F001C68A4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673C5191D24C70F001C68A4 /* ViewController.m */; };
 		0673C51D1D24C70F001C68A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0673C51B1D24C70F001C68A4 /* Main.storyboard */; };
 		0673C51F1D24C70F001C68A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0673C51E1D24C70F001C68A4 /* Assets.xcassets */; };
 		0673C5221D24C70F001C68A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0673C5201D24C70F001C68A4 /* LaunchScreen.storyboard */; };
-		06FA18E71D26161500E4E187 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06FA18E61D26161500E4E187 /* MapKit.framework */; };
 		06FA18EA1D264BBA00E4E187 /* MorePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FA18E91D264BBA00E4E187 /* MorePageViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06FA18E71D26161500E4E187 /* MapKit.framework in Frameworks */,
+				06376CA01D2BF4EE002CEEAB /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
