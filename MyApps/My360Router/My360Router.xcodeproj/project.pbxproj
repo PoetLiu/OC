@@ -13,6 +13,7 @@
 		060CCDF21DAA1C440013E06B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 060CCDF01DAA1C440013E06B /* Main.storyboard */; };
 		060CCDF41DAA1C440013E06B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 060CCDF31DAA1C440013E06B /* Assets.xcassets */; };
 		060CCDF71DAA1C440013E06B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 060CCDF51DAA1C440013E06B /* LaunchScreen.storyboard */; };
+		0629BD4E1DB5159A00AFBF55 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0629BD4D1DB5159A00AFBF55 /* NSData+CommonCrypto.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CCCDC2A2D69BBEB38B6ECE91 /* libPods-My360Router.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3029966A6DE17F6ACE37EE0E /* libPods-My360Router.a */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,8 @@
 		060CCDF31DAA1C440013E06B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		060CCDF61DAA1C440013E06B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		060CCDF81DAA1C440013E06B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0629BD4C1DB5159A00AFBF55 /* NSData+CommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CommonCrypto.h"; sourceTree = "<group>"; };
+		0629BD4D1DB5159A00AFBF55 /* NSData+CommonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCrypto.m"; sourceTree = "<group>"; };
 		3029966A6DE17F6ACE37EE0E /* libPods-My360Router.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-My360Router.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66BABEB2CDC60E0292555EFE /* Pods-My360Router.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My360Router.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My360Router/Pods-My360Router.debug.xcconfig"; sourceTree = "<group>"; };
 		A3B4ECFEA0BCDFAC07E60B5B /* Pods-My360Router.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My360Router.release.xcconfig"; path = "Pods/Target Support Files/Pods-My360Router/Pods-My360Router.release.xcconfig"; sourceTree = "<group>"; };
@@ -65,6 +68,7 @@
 		060CCDE61DAA1C440013E06B /* My360Router */ = {
 			isa = PBXGroup;
 			children = (
+				0629BD4A1DB5143300AFBF55 /* MRDataEncrypt */,
 				060CCDEA1DAA1C440013E06B /* AppDelegate.h */,
 				060CCDEB1DAA1C440013E06B /* AppDelegate.m */,
 				060CCDED1DAA1C440013E06B /* ViewController.h */,
@@ -84,6 +88,15 @@
 				060CCDE81DAA1C440013E06B /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0629BD4A1DB5143300AFBF55 /* MRDataEncrypt */ = {
+			isa = PBXGroup;
+			children = (
+				0629BD4C1DB5159A00AFBF55 /* NSData+CommonCrypto.h */,
+				0629BD4D1DB5159A00AFBF55 /* NSData+CommonCrypto.m */,
+			);
+			name = MRDataEncrypt;
 			sourceTree = "<group>";
 		};
 		7FA0E9B329689E2F2F472003 /* Frameworks */ = {
@@ -225,6 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0629BD4E1DB5159A00AFBF55 /* NSData+CommonCrypto.m in Sources */,
 				060CCDEF1DAA1C440013E06B /* ViewController.m in Sources */,
 				060CCDEC1DAA1C440013E06B /* AppDelegate.m in Sources */,
 				060CCDE91DAA1C440013E06B /* main.m in Sources */,

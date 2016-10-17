@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface ViewController ()
 
@@ -17,6 +18,14 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    NSString *urlString = @"http://192.168.0.1/webnoauth/router_function_list.cgi";
+    NSURL *url = [NSURL URLWithString:urlString];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager GET:url.absoluteString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"results: %@", responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"results: %@", error);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
