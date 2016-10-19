@@ -14,6 +14,9 @@
 		060CCDF41DAA1C440013E06B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 060CCDF31DAA1C440013E06B /* Assets.xcassets */; };
 		060CCDF71DAA1C440013E06B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 060CCDF51DAA1C440013E06B /* LaunchScreen.storyboard */; };
 		0629BD4E1DB5159A00AFBF55 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0629BD4D1DB5159A00AFBF55 /* NSData+CommonCrypto.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		064177011DB5C7EF00B7B4D6 /* MRCommonUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 064177001DB5C7EF00B7B4D6 /* MRCommonUtility.m */; };
+		064177061DB5CA6E00B7B4D6 /* MRSBEncryptAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 064177051DB5CA6E00B7B4D6 /* MRSBEncryptAdapter.m */; };
+		0641770B1DB5CADA00B7B4D6 /* MRError.m in Sources */ = {isa = PBXBuildFile; fileRef = 0641770A1DB5CADA00B7B4D6 /* MRError.m */; };
 		CCCDC2A2D69BBEB38B6ECE91 /* libPods-My360Router.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3029966A6DE17F6ACE37EE0E /* libPods-My360Router.a */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +33,12 @@
 		060CCDF81DAA1C440013E06B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0629BD4C1DB5159A00AFBF55 /* NSData+CommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CommonCrypto.h"; sourceTree = "<group>"; };
 		0629BD4D1DB5159A00AFBF55 /* NSData+CommonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCrypto.m"; sourceTree = "<group>"; };
+		064176FF1DB5C7EF00B7B4D6 /* MRCommonUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCommonUtility.h; sourceTree = "<group>"; };
+		064177001DB5C7EF00B7B4D6 /* MRCommonUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCommonUtility.m; sourceTree = "<group>"; };
+		064177041DB5CA6E00B7B4D6 /* MRSBEncryptAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRSBEncryptAdapter.h; sourceTree = "<group>"; };
+		064177051DB5CA6E00B7B4D6 /* MRSBEncryptAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRSBEncryptAdapter.m; sourceTree = "<group>"; };
+		064177091DB5CADA00B7B4D6 /* MRError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRError.h; sourceTree = "<group>"; };
+		0641770A1DB5CADA00B7B4D6 /* MRError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRError.m; sourceTree = "<group>"; };
 		3029966A6DE17F6ACE37EE0E /* libPods-My360Router.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-My360Router.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66BABEB2CDC60E0292555EFE /* Pods-My360Router.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My360Router.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My360Router/Pods-My360Router.debug.xcconfig"; sourceTree = "<group>"; };
 		A3B4ECFEA0BCDFAC07E60B5B /* Pods-My360Router.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My360Router.release.xcconfig"; path = "Pods/Target Support Files/Pods-My360Router/Pods-My360Router.release.xcconfig"; sourceTree = "<group>"; };
@@ -68,6 +77,9 @@
 		060CCDE61DAA1C440013E06B /* My360Router */ = {
 			isa = PBXGroup;
 			children = (
+				064177081DB5CABC00B7B4D6 /* Service */,
+				064177031DB5CA3E00B7B4D6 /* Logic */,
+				064176FE1DB5C74800B7B4D6 /* Utils */,
 				0629BD4A1DB5143300AFBF55 /* MRDataEncrypt */,
 				060CCDEA1DAA1C440013E06B /* AppDelegate.h */,
 				060CCDEB1DAA1C440013E06B /* AppDelegate.m */,
@@ -97,6 +109,33 @@
 				0629BD4D1DB5159A00AFBF55 /* NSData+CommonCrypto.m */,
 			);
 			name = MRDataEncrypt;
+			sourceTree = "<group>";
+		};
+		064176FE1DB5C74800B7B4D6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				064176FF1DB5C7EF00B7B4D6 /* MRCommonUtility.h */,
+				064177001DB5C7EF00B7B4D6 /* MRCommonUtility.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		064177031DB5CA3E00B7B4D6 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				064177041DB5CA6E00B7B4D6 /* MRSBEncryptAdapter.h */,
+				064177051DB5CA6E00B7B4D6 /* MRSBEncryptAdapter.m */,
+			);
+			name = Logic;
+			sourceTree = "<group>";
+		};
+		064177081DB5CABC00B7B4D6 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				064177091DB5CADA00B7B4D6 /* MRError.h */,
+				0641770A1DB5CADA00B7B4D6 /* MRError.m */,
+			);
+			name = Service;
 			sourceTree = "<group>";
 		};
 		7FA0E9B329689E2F2F472003 /* Frameworks */ = {
@@ -239,9 +278,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0629BD4E1DB5159A00AFBF55 /* NSData+CommonCrypto.m in Sources */,
+				064177061DB5CA6E00B7B4D6 /* MRSBEncryptAdapter.m in Sources */,
+				064177011DB5C7EF00B7B4D6 /* MRCommonUtility.m in Sources */,
 				060CCDEF1DAA1C440013E06B /* ViewController.m in Sources */,
 				060CCDEC1DAA1C440013E06B /* AppDelegate.m in Sources */,
 				060CCDE91DAA1C440013E06B /* main.m in Sources */,
+				0641770B1DB5CADA00B7B4D6 /* MRError.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

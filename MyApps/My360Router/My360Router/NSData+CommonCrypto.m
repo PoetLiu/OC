@@ -8,7 +8,7 @@
 
 #import "NSData+CommonCrypto.h"
 
-static void QHSRFixKeyLengths( CCAlgorithm algorithm, NSMutableData * keyData, NSMutableData * ivData )
+static void MRFixKeyLengths( CCAlgorithm algorithm, NSMutableData * keyData, NSMutableData * ivData )
 {
     NSUInteger keyLength = [keyData length];
     switch ( algorithm )
@@ -102,7 +102,7 @@ static void QHSRFixKeyLengths( CCAlgorithm algorithm, NSMutableData * keyData, N
     return ( [NSData dataWithBytesNoCopy: buf length: bytesTotal] );
 }
 
-- (NSData *) QHSRDataEncryptedUsingAlgorithm: (CCAlgorithm) algorithm
+- (NSData *) MRDataEncryptedUsingAlgorithm: (CCAlgorithm) algorithm
                                          key: (id) key
                         initializationVector: (id) iv
                                      options: (CCOptions) options
@@ -129,7 +129,7 @@ static void QHSRFixKeyLengths( CCAlgorithm algorithm, NSMutableData * keyData, N
     [ivData autorelease];
     
     // ensure correct lengths for key and iv data, based on algorithms
-    QHSRFixKeyLengths( algorithm, keyData, ivData );
+    MRFixKeyLengths( algorithm, keyData, ivData );
     
     status = CCCryptorCreate( kCCEncrypt, algorithm, options,
                              [keyData bytes], [keyData length], [ivData bytes],
@@ -151,7 +151,7 @@ static void QHSRFixKeyLengths( CCAlgorithm algorithm, NSMutableData * keyData, N
     return ( result );
 }
 
-- (NSData *) QHSRDecryptedDataUsingAlgorithm: (CCAlgorithm) algorithm
+- (NSData *) MRDecryptedDataUsingAlgorithm: (CCAlgorithm) algorithm
                                          key: (id) key		// data or string
                         initializationVector: (id) iv		// data or string
                                      options: (CCOptions) options
@@ -178,7 +178,7 @@ static void QHSRFixKeyLengths( CCAlgorithm algorithm, NSMutableData * keyData, N
     [ivData autorelease];
     
     // ensure correct lengths for key and iv data, based on algorithms
-    QHSRFixKeyLengths( algorithm, keyData, ivData );
+    MRFixKeyLengths( algorithm, keyData, ivData );
     
     status = CCCryptorCreate( kCCDecrypt, algorithm, options,
                              [keyData bytes], [keyData length], [ivData bytes],
