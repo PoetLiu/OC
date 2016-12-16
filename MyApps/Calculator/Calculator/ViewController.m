@@ -9,6 +9,11 @@
 #import "ViewController.h"
 #import "Calculator.h"
 
+typedef NS_ENUM(NSUInteger, CalcStateType) {
+	CalcStateNormal,
+	CalcStateError
+};
+
 @interface ViewController ()
 @property (nonatomic, strong) UITextField *resultField;
 @property (nonatomic, strong) NSMutableArray *buttons;
@@ -17,6 +22,7 @@
 @property (nonatomic, assign) CGFloat screenWidth;
 @property (nonatomic, assign) CGFloat buttonHeight;
 @property (nonatomic, assign) CGFloat buttonWidth;
+@property (nonatomic, assign) CalcStateType state;
 @end
 
 @implementation ViewController
@@ -31,6 +37,7 @@ static const NSInteger BUTTON_SPACE_HORIZONTAL = 1.0f;
 	_screenWidth	= [UIScreen mainScreen].bounds.size.width;
 	_buttonHeight	= _screenHeight/7.0;
 	_buttonWidth	= _screenWidth/4.0;
+	_state			= CalcStateNormal;
 	self.resultField	= [[UITextField alloc] init];
 	_resultField.placeholder	= @"0";
 	_resultField.userInteractionEnabled	= NO;
@@ -38,6 +45,7 @@ static const NSInteger BUTTON_SPACE_HORIZONTAL = 1.0f;
 	_resultField.font	= [UIFont systemFontOfSize:60];
 	_resultField.contentVerticalAlignment	= UIControlContentVerticalAlignmentBottom;
 	_resultField.contentHorizontalAlignment	= UIControlContentHorizontalAlignmentRight;
+	_resultField.adjustsFontSizeToFitWidth = YES;
 	_resultField.translatesAutoresizingMaskIntoConstraints	= NO;
 	[self.view addSubview:_resultField];
 	[_resultField.topAnchor constraintEqualToAnchor:self.view.topAnchor].active	= YES;
@@ -95,6 +103,12 @@ static const NSInteger BUTTON_SPACE_HORIZONTAL = 1.0f;
 }
 
 -(void)buttonPressed:(id)sender {
+	NSError *error = nil;
+	NSString *result = nil;
+	if (self.state == CalcStateError) {
+		self.resultField.text	= nil;
+		self.state	= CalcStateNormal;
+	}
 	switch ([[sender titleForState:UIControlStateNormal] characterAtIndex:0]) {
 		case '0':
 		case '1':
@@ -111,15 +125,24 @@ static const NSInteger BUTTON_SPACE_HORIZONTAL = 1.0f;
 		case '-':
 		case '*':
 		case '/':
-			self.resultField.text	= [self.resultField.text stringByAppendingString:[sender titleForState:UIControlStateNormal]];
+			result	= [self.resultField.text stringByAppendingString:[sender titleForState:UIControlStateNormal]];
 			break;
 		case '=':
-			self.resultField.text	= [Calculator calculateWithExpression:self.resultField.text];
+			result	= [Calculator calculateWithExpression:self.resultField.text withError:&error];
 			break;
 		case 'C':
-			self.resultField.text	= nil;
+			result	= nil;
 			break;
 	}
+	
+	if (error) {
+		NSLog(@"Error:%@", error);
+		self.state				= CalcStateError;
+		self.resultField.text	= @"error";
+	} else {
+		self.resultField.text	= result;
+	}
+	return;
 }
 
 - (void)didReceiveMemoryWarning {

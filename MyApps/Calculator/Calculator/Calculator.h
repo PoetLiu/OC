@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface Calculator : NSObject
-+(NSString * _Nullable)calculateWithExpression:(nonnull NSString *)expression;
-+(NSArray *_Nullable)parseWithExpression:(nonnull NSString *)expression;
++(NSString *)calculateWithExpression:(NSString *)expression withError:(NSError **)error;
++(NSArray *)parseWithExpression:(NSString *)expression;
 @end

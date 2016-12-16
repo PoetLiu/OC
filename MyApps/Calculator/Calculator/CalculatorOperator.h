@@ -28,5 +28,7 @@ typedef NS_ENUM(NSUInteger, CalcOperatorPriority) {
 +(BOOL)characterIsOperator:(unichar)c;
 +(CalcOperatorType)characterOperatorType:(unichar)c;
 -(instancetype)initWithOperatorType:(CalcOperatorType)type;
--(CalculatorOperand*) calculateWithLeftOperand:(CalculatorOperand *)left rightOperand:(CalculatorOperand *)right;
+-(CalculatorOperand*) calculateWithLeftOperand:(CalculatorOperand *)left
+								  rightOperand:(CalculatorOperand *)right
+									 withError:(NSError **)err;
 @end
