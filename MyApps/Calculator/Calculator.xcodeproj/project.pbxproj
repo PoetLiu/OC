@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0632098A1E041E9300228284 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 063209891E041E9300228284 /* AudioToolbox.framework */; };
 		06F78C7A1CD84827002FEB28 /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F78C791CD84827002FEB28 /* Calculator.m */; };
 		06F78C7D1CD84DDC002FEB28 /* CalculatorElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F78C7C1CD84DDC002FEB28 /* CalculatorElement.m */; };
 		06F78C801CD852EC002FEB28 /* CalculatorOperand.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F78C7F1CD852EC002FEB28 /* CalculatorOperand.m */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		063209891E041E9300228284 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		06F78C781CD84827002FEB28 /* Calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculator.h; sourceTree = "<group>"; };
 		06F78C791CD84827002FEB28 /* Calculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Calculator.m; sourceTree = "<group>"; };
 		06F78C7B1CD84DDC002FEB28 /* CalculatorElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorElement.h; sourceTree = "<group>"; };
@@ -45,17 +47,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0632098A1E041E9300228284 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		063209881E041E9300228284 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				063209891E041E9300228284 /* AudioToolbox.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		06F89DEE1CD3054300F58CEB = {
 			isa = PBXGroup;
 			children = (
 				06F89DF91CD3054300F58CEB /* Calculator */,
 				06F89DF81CD3054300F58CEB /* Products */,
+				063209881E041E9300228284 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

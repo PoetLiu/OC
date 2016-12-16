@@ -128,22 +128,20 @@ ret:
  */
 +(NSString *)resultTrim:(NSString *)res {
     NSUInteger zeroNum = 0;
-    NSInteger dotPos = -1;
-    
-    for (NSInteger i = 0; i < [res length]; i++) {
-        if (dotPos == -1 && [res characterAtIndex:i] == '.') {
-            dotPos  = i;
-        } else if ([res characterAtIndex:i] == '0') {
+    NSInteger i = 0;
+    for (i = (NSInteger)[res length]-1; i >= 0; i--) {
+        if ([res characterAtIndex:i] == '0') {
             zeroNum++;
-        } else if (zeroNum) {
+        } else {
             break;
         }
     }
-    
-	if (dotPos == -1 || zeroNum != [res length] - dotPos - 1)
+    if (i >= 0 && [res characterAtIndex:i] == '.') {
+        zeroNum++;
+        return [res substringWithRange:NSMakeRange(0, [res length]-zeroNum)];
+    } else {
         return res;
-    else
-        return [res substringWithRange:NSMakeRange(0, dotPos)];
+    }
 }
 
 @end

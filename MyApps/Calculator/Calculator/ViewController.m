@@ -8,6 +8,9 @@
 
 #import "ViewController.h"
 #import "Calculator.h"
+#import <AudioToolbox/AudioToolbox.h>
+
+#define BTN_PRESS_SOUND_ID  1104
 
 typedef NS_ENUM(NSUInteger, CalcStateType) {
 	CalcStateNormal,
@@ -42,7 +45,7 @@ static const NSInteger BUTTON_SPACE_HORIZONTAL = 1.0f;
 	_resultField.placeholder	= @"0";
 	_resultField.userInteractionEnabled	= NO;
 	_resultField.textAlignment	= NSTextAlignmentRight;
-	_resultField.font	= [UIFont systemFontOfSize:60];
+	_resultField.font	= [UIFont systemFontOfSize:80];
 	_resultField.contentVerticalAlignment	= UIControlContentVerticalAlignmentBottom;
 	_resultField.contentHorizontalAlignment	= UIControlContentHorizontalAlignmentRight;
 	_resultField.adjustsFontSizeToFitWidth = YES;
@@ -102,9 +105,14 @@ static const NSInteger BUTTON_SPACE_HORIZONTAL = 1.0f;
 	[new.widthAnchor constraintEqualToConstant:_buttonWidth*width-BUTTON_SPACE_HORIZONTAL].active	= YES;
 }
 
+-(void)voiceBtnPressPlay:(id)sender {
+    AudioServicesPlaySystemSound(BTN_PRESS_SOUND_ID);
+}
+
 -(void)buttonPressed:(id)sender {
 	NSError *error = nil;
 	NSString *result = nil;
+    [self voiceBtnPressPlay:self];
 	if (self.state == CalcStateError) {
 		self.resultField.text	= nil;
 		self.state	= CalcStateNormal;

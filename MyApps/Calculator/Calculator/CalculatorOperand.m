@@ -18,7 +18,7 @@
 
 +(BOOL)characterIsOperand:(unichar)c
 {
-	return isalnum(c) || c == '.';
+	return isalnum(c) || c == '.' || c == '-' || c == '+';
 }
 
 -(NSString *)description {
