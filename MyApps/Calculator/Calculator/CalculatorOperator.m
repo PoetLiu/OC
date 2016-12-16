@@ -9,6 +9,8 @@
 #import "CalculatorOperator.h"
 
 @implementation CalculatorOperator
+NSString *domain = @"com.lp.Calculator.ErrorDomain";
+
 -(instancetype)initWithOperatorType:(CalcOperatorType)type {
 	if (self = [super initWithElementType:CalcElementTypeOperator]) {
 		self.operatorType	= type;
@@ -55,7 +57,9 @@
 	}
 }
 
--(CalculatorOperand*) calculateWithLeftOperand:(CalculatorOperand *)left rightOperand:(CalculatorOperand *)right {
+-(CalculatorOperand*) calculateWithLeftOperand:(CalculatorOperand *)left
+								  rightOperand:(CalculatorOperand *)right
+									 withError:(NSError **)error {
 	double result = 0.0f;
 	switch (self.operatorType) {
 		case CalcOperatorTypePlus:
@@ -65,6 +69,13 @@
 			result = [left.value doubleValue] - [right.value doubleValue];
 			break;
 		case CalcOperatorTypeDivide:
+			if ([right.value doubleValue] == 0.0) {
+				NSString *desc = NSLocalizedString(@"Divide error", @"division by zero");
+    			NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
+				NSError *err	= [NSError errorWithDomain:domain code:-1 userInfo:userInfo];
+				*error	= err;
+				return nil;
+			}
 			result = [left.value doubleValue] / [right.value doubleValue];
 			break;
 		case CalcOperatorTypeMultiply:

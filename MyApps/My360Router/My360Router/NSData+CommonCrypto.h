@@ -13,12 +13,12 @@
 
 
 @interface NSData (LowLevelCommonCryptor)
-- (NSData *) QHSRDataEncryptedUsingAlgorithm: (CCAlgorithm) algorithm
+- (NSData *) MRDataEncryptedUsingAlgorithm: (CCAlgorithm) algorithm
                                          key: (id) key		// data or string
                         initializationVector: (id) iv		// data or string
                                      options: (CCOptions) options
                                        error: (CCCryptorStatus *) error;
-- (NSData *) QHSRDecryptedDataUsingAlgorithm: (CCAlgorithm) algorithm
+- (NSData *) MRDecryptedDataUsingAlgorithm: (CCAlgorithm) algorithm
                                          key: (id) key		// data or string
                         initializationVector: (id) iv		// data or string
                                      options: (CCOptions) options

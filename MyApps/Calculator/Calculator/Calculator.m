@@ -79,16 +79,16 @@ ret:
 	return param;
 }
 
-+(NSString *)calculateWithExpression:(nonnull NSString *)expression {
++(NSString *)calculateWithExpression:(nonnull NSString *)expression withError:(NSError **)error {
 	NSArray *param = [Calculator parseWithExpression:expression];
 	if (param == NULL) {
 		NSLog(@"parse expression faild.");
 		return nil;
 	}
-	return [Calculator calculator:param];
+	return [Calculator calculator:param withError:error];
 }
 
-+(NSString *)calculator:(NSArray *)params {
++(NSString *)calculator:(NSArray *)params withError:(NSError **)error{
 	CalculatorOperator *operator;
 	NSMutableArray *results = [NSMutableArray arrayWithArray:params];
 	NSString *res = nil;
@@ -97,7 +97,11 @@ ret:
 		NSInteger indexOperator	= [results indexOfObject:operator];
 		CalculatorOperand *left = [results objectAtIndex:indexOperator-1];
 		CalculatorOperand *right = [results objectAtIndex:indexOperator+1];
-		CalculatorOperand *resultOperand = [operator calculateWithLeftOperand:left rightOperand:right];
+		CalculatorOperand *resultOperand = [operator calculateWithLeftOperand:left rightOperand:right withError:error];
+		if (*error) {
+			NSLog(@"some thing wrong, stop calculating..");
+			return nil;
+		}
 		[results replaceObjectAtIndex:indexOperator withObject:resultOperand];
 		[results removeObjectsInArray:@[left, right]];
 	}
