@@ -38,18 +38,27 @@ typedef NS_ENUM (NSUInteger, CalcParseState) {
  Trimming the tail ".0000", and just return 80.
  */
 -(NSString *)resultTrim:(NSString *)res {
-    NSUInteger zeroNum = 0;
+    NSUInteger tailZeroSeqCnt = 0, hasPoint = 0, isSeq = 1;
     NSInteger i = 0;
     for (i = (NSInteger)[res length]-1; i >= 0; i--) {
-        if ([res characterAtIndex:i] == '0') {
-            zeroNum++;
+        if (isSeq && [res characterAtIndex:i] == '0') {
+            tailZeroSeqCnt++;
+            continue;
         } else {
-            break;
+            isSeq   = 0;
+        }
+        
+        if ([res characterAtIndex:i] == '.') {
+            hasPoint    = 1;
         }
     }
-    if (i >= 0 && [res characterAtIndex:i] == '.') {
-        zeroNum++;
-        return [res substringWithRange:NSMakeRange(0, [res length]-zeroNum)];
+    
+    if ([res characterAtIndex:[res length]-tailZeroSeqCnt-1] == '.') {
+        tailZeroSeqCnt++;
+    }
+    
+    if (hasPoint) {
+        return [res substringWithRange:NSMakeRange(0, [res length]-tailZeroSeqCnt)];
     } else {
         return res;
     }

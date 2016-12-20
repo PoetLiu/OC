@@ -61,7 +61,7 @@ static const NSInteger BUTTON_SPACE_HORIZONTAL = 1.0f;
 							@"4", @"5", @"6", @"-",
 							@"1", @"2", @"3", @"*",
 							@"0", @"(",	@")", @"/",
-							@"=", @"=", @".", @"C"];
+							@".", @"C", @"=", @"="];
 	
 	for (NSInteger i = 0; i < self.buttonLables.count; i++) {
 		NSString *label	= [self.buttonLables objectAtIndex:i];
