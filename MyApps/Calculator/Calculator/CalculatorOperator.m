@@ -26,7 +26,7 @@ static NSString *domain = @"com.lp.Calculator.Operator.ErrorDomain";
 				self.priority	= CalcOperatorPriorityHigh;
 				break;
 			case CalcOperatorTypeErr:
-				break;
+				return nil;
 			default:
 				break;
 		}

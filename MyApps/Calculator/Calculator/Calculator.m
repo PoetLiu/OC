@@ -10,8 +10,8 @@
 #import "CalculatorOperator.h"
 
 @interface Calculator ()
-@property (nonatomic, strong) NSMutableArray *operandStack;
-@property (nonatomic, strong) NSMutableArray *operatorStack;
+@property (nonatomic, strong) NSMutableArray *paramStack;
+@property (nonatomic, strong) NSMutableArray *tmpStack;
 @end
 
 static NSString *domain = @"com.lp.Calculator.ErrorDomain";
@@ -27,8 +27,8 @@ typedef NS_ENUM (NSUInteger, CalcParseState) {
 
 -(instancetype)init {
 	if (self = [super init]) {
-		_operandStack	= [[NSMutableArray alloc] init];
-		_operatorStack	= [[NSMutableArray alloc] init];
+		_paramStack	= [[NSMutableArray alloc] init];
+		_tmpStack	= [[NSMutableArray alloc] init];
 	}
 	return self;
 }
@@ -56,44 +56,42 @@ typedef NS_ENUM (NSUInteger, CalcParseState) {
 }
 
 -(void)paramStackPushToPolish:(id)element {
-	CalculatorOperator *operator = element, *topOperator = [self.operatorStack lastObject];
+	CalculatorOperator *operator = element, *topOperator = [self.tmpStack lastObject];
 	CalculatorOperand *operand = element;
 	
 	switch ([element elementType]) {
 		case CalcElementTypeOperand:
-			[self.operandStack addObject:operand];
+			[self.paramStack addObject:operand];
 			break;
 		case CalcElementTypeOperator:
 		{
-			if (([self.operatorStack count] == 0 || [topOperator operatorType] == CalcOperatorTypeRightBracket)
+			if (([self.tmpStack count] == 0 || [topOperator operatorType] == CalcOperatorTypeRightBracket)
 				|| ([operator operatorType] == CalcOperatorTypeRightBracket)) {
-				[self.operatorStack addObject:operator];
+				[self.tmpStack addObject:operator];
 				break;
 			}
 			
 			if ([operator operatorType] != CalcOperatorTypeLeftBracket) {
-				__block int add_flag	= 0;
-				[self.operatorStack enumerateObjectsWithOptions:NSEnumerationReverse
+				[self.tmpStack enumerateObjectsWithOptions:NSEnumerationReverse
 												usingBlock:^(CalculatorOperator *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-					if ([operator priority] >= [obj priority]) {
-						[self.operatorStack addObject:operator];
-						add_flag	= 1;
-						*stop	= TRUE;
-					}
+					if ([operator priority] < [obj priority]) {
+						[self.paramStack addObject:obj];
+                        [self.tmpStack removeObject:obj];
+                    } else {
+                        *stop	= TRUE;
+                    }
 				}];
-				if (!add_flag) {
-					[self.operatorStack insertObject:operator atIndex:0];
-				}
+                [self.tmpStack addObject:operator];
 				break;
 			} else {	// is left bracket.
-				[self.operatorStack enumerateObjectsWithOptions:NSEnumerationReverse
+				[self.tmpStack enumerateObjectsWithOptions:NSEnumerationReverse
 												usingBlock:^(CalculatorOperator *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
 					if ([obj operatorType] == CalcOperatorTypeRightBracket) {
 						*stop	= TRUE;
 					} else {
-						[self.operandStack addObject:obj];
+						[self.paramStack addObject:obj];
 					}
-					[self.operatorStack removeObject:obj];
+					[self.tmpStack removeObject:obj];
 				}];
 			}
 			break;
@@ -101,59 +99,18 @@ typedef NS_ENUM (NSUInteger, CalcParseState) {
 		default:
 			break;
 	}
-	NSLog(@"pushed:%@ operand:%@ operator:%@", element, self.operandStack, self.operatorStack);
+	NSLog(@"pushed:%@ operand:%@ operator:%@", element, self.paramStack, self.tmpStack);
 	return;
 }
 
 -(void)paramStackPushDone{
-	[self.operatorStack enumerateObjectsWithOptions:NSEnumerationReverse
+	[self.tmpStack enumerateObjectsWithOptions:NSEnumerationReverse
 									usingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-			[self.operandStack addObject:obj];
-			[self.operatorStack removeObject:obj];
+			[self.paramStack addObject:obj];
+			[self.tmpStack removeObject:obj];
 	}];
-	NSLog(@"param stack push done. param:%@", self.operandStack);
-	// divide the operand and operator.
-	[self.operandStack enumerateObjectsWithOptions:NSEnumerationReverse
-									usingBlock:^(CalculatorElement *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-			if ([obj elementType] == CalcElementTypeOperator) {
-				[self.operatorStack insertObject:obj atIndex:0];
-				[self.operandStack removeObject:obj];
-			}
-	}];
-	NSLog(@"after devide operand and operator, operand:%@, operator:%@", self.operandStack, self.operatorStack);
+	NSLog(@"param stack push done. param:%@", self.paramStack);
 }
-
--(id)paramStackPop:(CalcElementType)elementType {
-	id result = 0;
-	switch (elementType) {
-  		case CalcElementTypeOperator:
-			result	= [self.operatorStack lastObject];
-			[self.operatorStack removeObject:result];
-			break;
-		case CalcElementTypeOperand:
-			result	= [self.operandStack lastObject];
-			[self.operandStack removeObject:result];
-  		default:
-			break;
-	}
-	NSLog(@"Poped out:%@", result);
-	return result;
-}
-
--(void)paramStackPush:(id)element {
-	switch ([element elementType]) {
-		case CalcElementTypeOperator:
-			[self.operatorStack addObject:element];
-			break;
-		case CalcElementTypeOperand:
-			[self.operandStack addObject:element];
-		default:
-			break;
-	}
-	NSLog(@"Pushed in:%@", element);
-	return;
-}
-
 
 /*
  * Parse to Polish Notation.
@@ -161,9 +118,10 @@ typedef NS_ENUM (NSUInteger, CalcParseState) {
 -(BOOL)parseWithExpression:(nonnull NSString *)expression withError:(NSError **)error{
 	CalcParseState state = CalcParseStateInit;
 	NSString *errDes = nil;
-	int operandStart = 0, operandEnd = 0, operator = 0, i = 0;
+	int operandStart = 0, operandEnd = 0, operatorStart = 0, operatorEnd = 0, i = 0;
+    unichar c = 0;
 	for (i = (int)[expression length]-1; i >= 0; i--) {
-		unichar c = [expression characterAtIndex:i];
+		c = [expression characterAtIndex:i];
 		NSLog(@"%c", c);
 		switch (state) {
 			case CalcParseStateInit:
@@ -172,15 +130,15 @@ typedef NS_ENUM (NSUInteger, CalcParseState) {
 					operandEnd	= i;
 				} else if (c == '(' || c == ')') {
 					state	= CalcParseStateOperator;
-					operator	= i;
+					operatorEnd	= i;
 				} else {
-					errDes	= @"expression not end with num";
+					errDes	= @"expression not end with num or bracket.";
 				}
 				break;
 			case CalcParseStateOperand:
 				if ([CalculatorOperator characterIsOperator:c]) {
 					state	= CalcParseStateOperator;
-					operator	= i;
+					operatorEnd	= i;
 					operandStart	= i + 1;
 					NSString *operand = [expression substringWithRange:NSMakeRange(operandStart, operandEnd - operandStart + 1)];
 					CalculatorOperand *new = [[CalculatorOperand alloc] initWithValue:operand];
@@ -190,17 +148,14 @@ typedef NS_ENUM (NSUInteger, CalcParseState) {
 			case CalcParseStateOperator:
 				if ([CalculatorOperand characterIsOperand:c]) {
 					state	= CalcParseStateOperand;
-					operandEnd	= i;
-					CalculatorOperator *new = [[CalculatorOperator alloc] initWithOperatorType:
-											   [CalculatorOperator characterOperatorType:
-												[expression characterAtIndex:operator]]];
-					[self paramStackPushToPolish:new];
-				} else if ([CalculatorOperator characterIsOperator:c]) {
-					operator	= i+1;
-					CalculatorOperator *new = [[CalculatorOperator alloc] initWithOperatorType:
-											   [CalculatorOperator characterOperatorType:
-												[expression characterAtIndex:operator]]];
-					[self paramStackPushToPolish:new];
+                    operatorStart   = i+1;
+					operandEnd      = i;
+                    for (int i = operatorEnd; i >= operatorStart; i--) {
+                        CalculatorOperator *new = [[CalculatorOperator alloc] initWithOperatorType:
+                                                   [CalculatorOperator characterOperatorType:
+                                                    [expression characterAtIndex:i]]];
+                        [self paramStackPushToPolish:new];
+                    }
 				}
 				break;
 			default:
@@ -208,13 +163,22 @@ typedef NS_ENUM (NSUInteger, CalcParseState) {
 		}
 	}
 	
-	if (state == CalcParseStateOperand) {
+	if ([CalculatorOperand characterIsOperand:c]) {
 		operandStart	= i + 1;
 		NSString *operand = [expression substringWithRange:NSMakeRange(operandStart, operandEnd - operandStart + 1)];
 		CalculatorOperand *new = [[CalculatorOperand alloc] initWithValue:operand];
 		[self paramStackPushToPolish:new];
 		state	= CalcParseStateEnd;
-	}
+    } else {
+        operatorStart   = i + 1;
+        for (int i = operatorEnd; i >= operatorStart; i--) {
+            CalculatorOperator *new = [[CalculatorOperator alloc] initWithOperatorType:
+                                       [CalculatorOperator characterOperatorType:
+                                        [expression characterAtIndex:i]]];
+            [self paramStackPushToPolish:new];
+        }
+        state	= CalcParseStateEnd;
+    }
 	[self paramStackPushDone];
 	
 ret:
@@ -225,32 +189,69 @@ ret:
 		*error	= [NSError errorWithDomain:domain code:-2 userInfo:userInfo];
 		return false;
 	}
-	NSLog(@"%@", self.operandStack);
 	return true;
 }
 
+-(BOOL)nextOperator:(CalculatorOperator **)operator
+                 id:(NSUInteger*)id
+        leftOperand:(CalculatorOperand **)left
+       rightOperand:(CalculatorOperand **)right {
+    __block BOOL ret = false;
+    __block CalculatorElement *tmpLeft = nil, *tmpRight = nil;
+    [self.paramStack enumerateObjectsUsingBlock:^(CalculatorElement *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj elementType] == CalcElementTypeOperator) {
+            if (idx < 2) {
+                NSLog(@"Lack of operand.");
+            } else {
+                tmpLeft       = (CalculatorElement *)[self.paramStack objectAtIndex:idx-1];
+                tmpRight      = (CalculatorElement *)[self.paramStack objectAtIndex:idx-2];
+                if ([tmpLeft elementType] == CalcElementTypeOperand && [tmpRight elementType] == CalcElementTypeOperand) {
+                    *operator   = (CalculatorOperator *)obj;
+                    *left       = (CalculatorOperand *)tmpLeft;
+                    *right      = (CalculatorOperand *)tmpRight;
+                    *id         = idx;
+                    ret         = true;
+                } else {
+                    NSLog(@"Error elementType, Two operand needed. left:%@, right:%@", tmpLeft, tmpRight);
+                }
+            }
+            *stop       = 1;
+        }
+    }];
+    
+    return ret;
+}
+
 -(NSString *)calculatorWithError:(NSError **)error{
-	CalculatorOperator *operator;
+	CalculatorOperator *operator = nil;
+    CalculatorOperand *left = nil;
+    CalculatorOperand *right = nil;
+    NSUInteger operatorIdx = 0;
 	NSString *res = nil;
 	
-	while ((operator = [self paramStackPop:CalcElementTypeOperator])) {
-		CalculatorOperand *left = [self paramStackPop:CalcElementTypeOperand];
-		CalculatorOperand *right = [self paramStackPop:CalcElementTypeOperand];
+    while (([self nextOperator:&operator id:&operatorIdx leftOperand:&left rightOperand:&right])) {
 		CalculatorOperand *resultOperand = [operator calculateWithLeftOperand:left rightOperand:right withError:error];
 		if (*error) {
 			NSLog(@"some thing wrong, stop calculating..");
 			return nil;
 		}
-		[self paramStackPush:resultOperand];
+        NSLog(@"resultOperand:%@", resultOperand);
+        [self.paramStack replaceObjectAtIndex:operatorIdx withObject:resultOperand];
+        [self.paramStack removeObject:left];
+        [self.paramStack removeObject:right];
 	}
-	res = ((CalculatorOperand *)[self.operandStack firstObject]).value;
+	res = ((CalculatorOperand *)[self.paramStack firstObject]).value;
 	return [self resultTrim:res];
 }
 
 -(NSString *)calculateWithExpression:(nonnull NSString *)expression withError:(NSError **)error {
-	[self.operandStack removeAllObjects];
-	[self.operatorStack removeAllObjects];
-	[self parseWithExpression:expression withError:error];
+	[self.paramStack removeAllObjects];
+	[self.tmpStack removeAllObjects];
+    NSString *exp = expression;
+    
+    if ([expression characterAtIndex:0] == '-')
+        exp = [NSString stringWithFormat:@"0%@", expression];
+	[self parseWithExpression:exp withError:error];
 	if (*error) {
 		NSLog(@"parse expression faild.");
 		return nil;
