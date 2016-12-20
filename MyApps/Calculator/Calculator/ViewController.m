@@ -26,6 +26,7 @@ typedef NS_ENUM(NSUInteger, CalcStateType) {
 @property (nonatomic, assign) CGFloat buttonHeight;
 @property (nonatomic, assign) CGFloat buttonWidth;
 @property (nonatomic, assign) CalcStateType state;
+@property (nonatomic, strong) Calculator *calculator;
 @end
 
 @implementation ViewController
@@ -36,6 +37,7 @@ static const NSInteger BUTTON_SPACE_HORIZONTAL = 1.0f;
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
+	_calculator		= [[Calculator alloc] init];
 	_screenHeight	= [UIScreen mainScreen].bounds.size.height;
 	_screenWidth	= [UIScreen mainScreen].bounds.size.width;
 	_buttonHeight	= _screenHeight/7.0;
@@ -58,18 +60,15 @@ static const NSInteger BUTTON_SPACE_HORIZONTAL = 1.0f;
     self.buttonLables	= @[@"7", @"8", @"9", @"+",
 							@"4", @"5", @"6", @"-",
 							@"1", @"2", @"3", @"*",
-							@"0", @".",	@".", @"/",
-							@"=", @"=", @"=", @"C"];
+							@"0", @"(",	@")", @"/",
+							@"=", @"=", @".", @"C"];
 	
 	for (NSInteger i = 0; i < self.buttonLables.count; i++) {
 		NSString *label	= [self.buttonLables objectAtIndex:i];
 		NSInteger width = 1, height = 1;
 		switch ([label characterAtIndex:0]) {
-			case '.':
-				width	= 2;
-				break;
 			case '=':
-				width	= 3;
+				width	= 2;
 				break;
 			default:
 				break;
@@ -133,10 +132,12 @@ static const NSInteger BUTTON_SPACE_HORIZONTAL = 1.0f;
 		case '-':
 		case '*':
 		case '/':
+		case '(':
+		case ')':
 			result	= [self.resultField.text stringByAppendingString:[sender titleForState:UIControlStateNormal]];
 			break;
 		case '=':
-			result	= [Calculator calculateWithExpression:self.resultField.text withError:&error];
+			result	= [self.calculator calculateWithExpression:self.resultField.text withError:&error];
 			break;
 		case 'C':
 			result	= nil;

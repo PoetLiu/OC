@@ -14,7 +14,9 @@ typedef NS_ENUM(NSInteger, CalcOperatorType) {
 	CalcOperatorTypePlus,
 	CalcOperatorTypeMinus,
 	CalcOperatorTypeMultiply,
-	CalcOperatorTypeDivide
+	CalcOperatorTypeDivide,
+	CalcOperatorTypeLeftBracket,
+	CalcOperatorTypeRightBracket
 };
 
 typedef NS_ENUM(NSUInteger, CalcOperatorPriority) {

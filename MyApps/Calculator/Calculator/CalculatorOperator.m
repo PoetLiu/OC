@@ -9,12 +9,14 @@
 #import "CalculatorOperator.h"
 
 @implementation CalculatorOperator
-NSString *domain = @"com.lp.Calculator.ErrorDomain";
+static NSString *domain = @"com.lp.Calculator.Operator.ErrorDomain";
 
 -(instancetype)initWithOperatorType:(CalcOperatorType)type {
 	if (self = [super initWithElementType:CalcElementTypeOperator]) {
 		self.operatorType	= type;
 		switch (type) {
+			case CalcOperatorTypeLeftBracket:
+			case CalcOperatorTypeRightBracket:
 			case CalcOperatorTypePlus:
 			case CalcOperatorTypeMinus:
 				self.priority	= CalcOperatorPriorityNormal;
@@ -22,6 +24,8 @@ NSString *domain = @"com.lp.Calculator.ErrorDomain";
 			case CalcOperatorTypeDivide:
 			case CalcOperatorTypeMultiply:
 				self.priority	= CalcOperatorPriorityHigh;
+				break;
+			case CalcOperatorTypeErr:
 				break;
 			default:
 				break;
@@ -51,6 +55,10 @@ NSString *domain = @"com.lp.Calculator.ErrorDomain";
 			break;
 		case '/':
 			return CalcOperatorTypeDivide;
+		case '(':
+			return CalcOperatorTypeLeftBracket;
+		case ')':
+			return CalcOperatorTypeRightBracket;
   		default:
 			return CalcOperatorTypeErr;
 			break;
@@ -81,10 +89,17 @@ NSString *domain = @"com.lp.Calculator.ErrorDomain";
 		case CalcOperatorTypeMultiply:
 			result = [left.value doubleValue] * [right.value doubleValue];
 			break;
+		case CalcOperatorTypeErr:
+		case CalcOperatorTypeLeftBracket:
+		case CalcOperatorTypeRightBracket:
+			break;
 		default:
 			return nil;
 			break;
 	}
 	return [[CalculatorOperand alloc] initWithValue:[NSString stringWithFormat:@"%lf", result]];
+}
+-(NSString *)description {
+	return [NSString stringWithFormat:@"Operator type:%ld", self.operatorType];
 }
 @end
